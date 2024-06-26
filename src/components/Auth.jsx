@@ -45,8 +45,9 @@ export const Auth = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <br></br>
+      <button onClick={handleSignIn}>Iniciar sesión</button>
       <button onClick={handleSignUp}>Registrarse</button>
-      <button onClick={handleSignIn}>Iniciar Sesión</button>
       </form>
     </div>
   );
