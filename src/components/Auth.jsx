@@ -8,8 +8,6 @@ import {
 export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const emailRef = useRef(null);
-  const passworfRef = useRef(null);
   const signInButtonRef = useRef(null);
   const signUpButtonRef = useRef(null);
 
