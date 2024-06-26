@@ -4,12 +4,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const signInButtonRef = useRef(null);
   const signUpButtonRef = useRef(null);
+  const navigate = useNavigate();
 
   function resetForm() {
     setEmail("");
@@ -23,7 +25,8 @@ export const Auth = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("Usuario autenticado correctamente");
-        resetForm()
+        resetForm();
+        navigate("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -37,7 +40,7 @@ export const Auth = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("Usuario registrado correctamente");
-        resetForm()
+        resetForm();
       })
       .catch((error) => {
         console.log(error);
