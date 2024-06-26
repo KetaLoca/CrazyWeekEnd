@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { auth } from "../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
@@ -8,16 +8,29 @@ import {
 export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const emailRef = useRef(null);
+  const passworfRef = useRef(null);
+  const signInButtonRef = useRef(null);
+  const signUpButtonRef = useRef(null);
+
+  function resetForm() {
+    setEmail("");
+    setPassword("");
+    signInButtonRef.current.blur();
+    signUpButtonRef.current.blur();
+  }
 
   const handleSignIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("Usuario autenticado correctamente");
+        resetForm()
       })
       .catch((error) => {
         console.log(error);
         alert("Error al iniciar sesión");
+        resetForm();
       });
   };
 
@@ -26,10 +39,12 @@ export const Auth = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("Usuario registrado correctamente");
+        resetForm()
       })
       .catch((error) => {
         console.log(error);
         alert("Error al crear el usuario");
+        resetForm();
       });
   };
 
@@ -50,8 +65,12 @@ export const Auth = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br></br>
-        <button onClick={handleSignIn}>Iniciar sesión</button>
-        <button onClick={handleSignUp}>Registrarse</button>
+        <button ref={signInButtonRef} onClick={handleSignIn}>
+          Iniciar sesión
+        </button>
+        <button ref={signUpButtonRef} onClick={handleSignUp}>
+          Registrarse
+        </button>
       </form>
     </div>
   );
