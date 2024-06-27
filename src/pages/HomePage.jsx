@@ -7,9 +7,7 @@ import { signOut } from "firebase/auth";
 export function HomePage() {
   const [email, setEmail] = useState("Email no encontrado, debe loguearse");
   const navigate = useNavigate();
-  const context = useContext(AuthContext)
-  const { isLogged, setIsLogged, userEmail, setUserEmail } = context;
-
+ 
   function handleAccount() {
     navigate("/account");
   }
