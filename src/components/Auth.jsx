@@ -33,7 +33,6 @@ export const Auth = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        alert("Usuario autenticado correctamente");
         resetForm();
         navigate("/home");
       })

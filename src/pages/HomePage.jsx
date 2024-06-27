@@ -1,13 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { signOut } from "firebase/auth";
+import { set } from "firebase/database";
 
 export function HomePage() {
   const [email, setEmail] = useState("Email no encontrado, debe loguearse");
   const navigate = useNavigate();
- 
+
+  useEffect(() => {
+    const userEmail = auth.currentUser.email;
+    userEmail && setEmail(userEmail);
+  }, []);
+
+  function handleBuscarAlojamientos() {
+    navigate("/search");
+  }
+
+  function handleMisReservas() {
+    navigate("/reservations");
+  }
+
   function handleAccount() {
     navigate("/account");
   }
@@ -15,7 +29,6 @@ export function HomePage() {
   function handleLogOut() {
     signOut(auth)
       .then(() => {
-        alert("Sesión cerrada correctamente");
         navigate("/");
       })
       .catch((error) => {
@@ -32,8 +45,8 @@ export function HomePage() {
       </h2>
       <img src="src\assets\LogoAPP.png" alt="Logo de la aplicación" />
       <div className="switchbuttons">
-        <button>Buscar alojamientos</button>
-        <button>Consultar mis reservas</button>
+        <button onClick={handleBuscarAlojamientos}>Buscar alojamientos</button>
+        <button onClick={handleMisReservas}>Consultar mis reservas</button>
         <button onClick={handleAccount}>Mi cuenta</button>
         <button onClick={handleLogOut}>Cerrar sesión</button>
       </div>
