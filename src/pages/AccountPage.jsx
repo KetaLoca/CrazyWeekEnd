@@ -5,7 +5,7 @@ export function AccountPage() {
     <>
       <h1>Mi cuenta</h1>
       <h2>
-        Usuario logueado: <strong>{email}</strong>
+        Usuario logueado: <strong>Email usuario</strong>
       </h2>
       <img src="src\assets\LogoAPP.png" alt="Logo de la aplicación" />
     </>

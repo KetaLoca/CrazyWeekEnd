@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState("Aún no hay usuario logueado");
 
   return (
     <AuthContext.Provider
@@ -15,4 +15,4 @@ const AuthContextProvider = ({ children }) => {
   );
 };
 
-export default AuthContext;
+export default AuthContextProvider;

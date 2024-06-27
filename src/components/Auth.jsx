@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { auth } from "../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
@@ -13,6 +14,7 @@ export const Auth = () => {
   const signInButtonRef = useRef(null);
   const signUpButtonRef = useRef(null);
   const navigate = useNavigate();
+  const { setIsLogged, setUserEmail } = useContext(AuthContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -32,6 +34,8 @@ export const Auth = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
+        setIsLogged(true)
+        setUserEmail(email)
         alert("Usuario autenticado correctamente");
         resetForm();
         navigate("/home");
