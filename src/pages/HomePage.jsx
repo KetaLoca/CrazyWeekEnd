@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { signOut } from "firebase/auth";
 
 export function HomePage() {
-  const email = auth.currentUser.email;
+  const [email, setEmail] = useState("Email no encontrado, debe loguearse");
   const navigate = useNavigate();
+
+  function handleAccount() {
+    navigate("/account")
+  }
 
   function handleLogOut() {
     signOut(auth)
@@ -29,7 +33,7 @@ export function HomePage() {
       <div className="switchbuttons">
         <button>Buscar alojamientos</button>
         <button>Consultar mis reservas</button>
-        <button>Mi cuenta</button>
+        <button onClick={handleAccount}>Mi cuenta</button>
         <button onClick={handleLogOut}>Cerrar sesión</button>
       </div>
     </div>

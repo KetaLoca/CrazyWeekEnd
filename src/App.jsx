@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 import { Page404 } from "./pages/Page404";
 import { AuthPage } from "./pages/AuthPage";
 import { HomePage } from "./pages/HomePage";
+import { AccountPage } from "./pages/AccountPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Navigate to="/auth" />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/account" element={<AccountPage />} />
       </Routes>
     </Router>
   );
