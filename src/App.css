@@ -46,10 +46,10 @@ h1 {
 }
 
 img {
-max-width: 100%;
-height: auto;
-display: block;
-margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .link {
@@ -118,4 +118,62 @@ margin: 0 auto;
 
 #loginform button:hover {
   background-color: #555;
+}
+
+.homeheader {
+  width: 100%;
+  min-width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.homeheader strong {
+  color: red;
+}
+
+.homeheader img {
+  width: 300px;
+  height: auto;
+}
+
+.homeheader h1 {
+  font-size: 55px;
+  margin-bottom: 10px;
+}
+
+.homeheader h2 {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+/* Botones */
+.switchbuttons {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.switchbuttons button {
+  background-color: #4caf50; /* Verde */
+  width: 300px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 0; /* Elimina el margen horizontal */
+  cursor: pointer;
+}
+
+.switchbuttons button:hover {
+  background-color: #3e8e41; /* Verde más oscuro */
+}
+
+/* Eliminar espacio blanco sobrante */
+.homeheader + .switchbuttons {
+  margin-top: 0; /* Elimina el margen superior del contenedor de botones */
 }

@@ -20,13 +20,18 @@ export function HomePage() {
   }
 
   return (
-    <>
-      <header>
-        <h1>Esta es la página de inicio</h1>
-        <h2>{email}</h2>
-        <br></br>
-        <button onClick={handleLogOut}>Log out</button>
-      </header>
-    </>
+    <div className="homeheader">
+      <h1>CrazyWeekEnd</h1>
+      <h2>
+        Usuario logueado: <strong>{email}</strong>
+      </h2>
+      <img src="src\assets\LogoAPP.png" alt="Logo de la aplicación" />
+      <div className="switchbuttons">
+        <button>Buscar alojamientos</button>
+        <button>Consultar mis reservas</button>
+        <button>Mi cuenta</button>
+        <button onClick={handleLogOut}>Cerrar sesión</button>
+      </div>
+    </div>
   );
 }
