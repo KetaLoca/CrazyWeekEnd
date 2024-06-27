@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { auth } from "../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
@@ -9,9 +9,14 @@ import { useNavigate } from "react-router-dom";
 export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const signInButtonRef = useRef(null);
   const signUpButtonRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+
+  }, []);
 
   function resetForm() {
     setEmail("");
@@ -50,9 +55,9 @@ export const Auth = () => {
   };
 
   return (
-    <div>
+    <div className="authcontainer">
       <h1>Autenticación</h1>
-      <form>
+      <form id="loginform">
         <input
           type="email"
           placeholder="Correo electrónico"
@@ -65,7 +70,7 @@ export const Auth = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <br></br>
+        <p></p>
         <button ref={signInButtonRef} onClick={handleSignIn}>
           Iniciar sesión
         </button>

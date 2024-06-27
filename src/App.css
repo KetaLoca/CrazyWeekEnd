@@ -40,3 +40,74 @@
 .read-the-docs {
   color: #888;
 }
+
+h1 {
+  color: #2cd809;
+}
+
+img {
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+
+.link {
+  display: inline-block;
+  padding: 10px 20px; /* Ajusta el padding según sea necesario */
+  font-size: 20px; /* Ajusta el tamaño de la fuente */
+  text-decoration: none; /* Elimina el subrayado predeterminado */
+  color: #ffffff; /* Color del texto */
+  background-color: #3f079b; /* Color de fondo */
+  border-radius: 5px; /* Añade esquinas redondeadas */
+  border: 2px solid #e67bcb; /* Añade borde */
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.link:hover {
+  background-color: #c00698;
+}
+
+.authcontainer {
+  text-align: center;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+#loginform {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#loginform input {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#loginform button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#loginform button:hover {
+  background-color: #555;
+}
