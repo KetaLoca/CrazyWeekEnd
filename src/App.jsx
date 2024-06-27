@@ -9,15 +9,15 @@ import { AccountPage } from "./pages/AccountPage";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="*" element={<Page404 />} />
-        <Route path="/" element={<Navigate to="/auth" />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/account" element={<AccountPage />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="*" element={<Page404 />} />
+          <Route path="/" element={<Navigate to="/auth" />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/account" element={<AccountPage />} />
+        </Routes>
+      </Router>
   );
 }
 
