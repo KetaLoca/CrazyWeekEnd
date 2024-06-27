@@ -15,8 +15,11 @@ export const Auth = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-
-  }, []);
+    const timer = setTimeout(() => {
+      setError("");
+    }, 2400);
+    return () => clearTimeout(timer);
+  }, [error]);
 
   function resetForm() {
     setEmail("");
@@ -35,7 +38,7 @@ export const Auth = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("Error al iniciar sesión");
+        setError("Error al iniciar sesión");
         resetForm();
       });
   };
@@ -49,7 +52,7 @@ export const Auth = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("Error al crear el usuario");
+        setError("Error al registrar el usuario");
         resetForm();
       });
   };
@@ -70,7 +73,7 @@ export const Auth = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p></p>
+        <p>{error}</p>
         <button ref={signInButtonRef} onClick={handleSignIn}>
           Iniciar sesión
         </button>
