@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
-const AuthContextProvider = ({ children }) => {
+export function AuthContextProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
   const [userEmail, setUserEmail] = useState("Aún no hay usuario logueado");
 

@@ -3,15 +3,15 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { signOut } from "firebase/auth";
-import { set } from "firebase/database";
 
 export function HomePage() {
   const [email, setEmail] = useState("Email no encontrado, debe loguearse");
   const navigate = useNavigate();
+  const [userEmail] = useContext(AuthContext)
 
   useEffect(() => {
-    const userEmail = auth.currentUser.email;
     userEmail && setEmail(userEmail);
+    console.log(userEmail)
   }, []);
 
   function handleBuscarAlojamientos() {
