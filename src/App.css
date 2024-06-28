@@ -122,7 +122,6 @@ img {
 
 .homeheader {
   width: 100%;
-  min-width: 300px;
   padding: 20px;
   text-align: center;
 }
@@ -132,12 +131,12 @@ img {
 }
 
 .homeheader img {
-  width: 300px;
+  width: 65%;
   height: auto;
 }
 
 .homeheader h1 {
-  font-size: 58px;
+  font-size: 50px;
   margin-bottom: 10px;
 }
 
@@ -157,7 +156,7 @@ img {
 
 .switchbuttons button {
   background-color: #4caf50; /* Verde */
-  width: 300px;
+  width: 60%;
   border: none;
   color: white;
   padding: 15px 32px;

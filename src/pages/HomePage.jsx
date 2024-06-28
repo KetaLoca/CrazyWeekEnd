@@ -7,11 +7,12 @@ import { signOut } from "firebase/auth";
 export function HomePage() {
   const [email, setEmail] = useState("Email no encontrado, debe loguearse");
   const navigate = useNavigate();
-  const { userEmail } = useContext(AuthContext)
+
+  //const { userEmail } = useContext(AuthContext)
 
   useEffect(() => {
-    userEmail && setEmail(userEmail);
-    console.log(userEmail)
+    const userEmail = auth.currentUser?.email
+    userEmail && setEmail(userEmail)
   }, []);
 
   function handleBuscarAlojamientos() {
