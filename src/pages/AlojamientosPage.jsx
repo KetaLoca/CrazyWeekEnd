@@ -1,5 +1,9 @@
 import React from "react";
+import { Alojamientos } from "../components/Alojamientos";
 
 export function AlojamientosPage() {
-  return (<h1>Aquí se mostrarán los alojamientos</h1>)
+  return (<div>
+    <h1>Aquí se mostrarán los alojamientos</h1>
+    <Alojamientos />
+  </div>)
 }
