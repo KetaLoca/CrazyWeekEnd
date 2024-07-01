@@ -8,12 +8,12 @@ export function HomePage() {
   const { userEmail, isLogged, setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isLogged) {
-      alert("No puede acceder a esta página sin haber iniciado sesión");
-      navigate("/auth");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isLogged) {
+  //     alert("No puede acceder a esta página sin haber iniciado sesión");
+  //     navigate("/auth");
+  //   }
+  // }, []);
 
   function handleBuscarAlojamientos() {
     navigate("/search");

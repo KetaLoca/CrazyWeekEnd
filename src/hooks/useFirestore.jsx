@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
 import { User } from "../models/classes";
-import { auth } from "../firebaseConfig";
 
 export const useFirestore = () => {
   const [alojamientos, setAlojamientos] = useState([]);

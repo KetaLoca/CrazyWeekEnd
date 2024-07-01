@@ -14,12 +14,12 @@ export function AccountPage() {
   const navigate = useNavigate();
   const { addUser, getUser } = useFirestore();
 
-  useEffect(() => {
-    if (!isLogged) {
-      alert("No puede acceder a esta página sin haber iniciado sesión");
-      navigate("/auth");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isLogged) {
+  //     alert("No puede acceder a esta página sin haber iniciado sesión");
+  //     navigate("/auth");
+  //   }
+  // }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,7 +36,7 @@ export function AccountPage() {
         setTelefono(user.telefono);
       })
       .catch((e) => {
-        alert("Error recuperando usuario");
+        alert("Aún no hay datos asociados al usuario");
       });
   }, []);
 
@@ -56,7 +56,7 @@ export function AccountPage() {
 
   return (
     <>
-      <h1>Mi cuenta</h1>
+      <h1>Modificar perfil</h1>
       <h2>
         Usuario logueado: <strong>{userEmail}</strong>
       </h2>

@@ -4,6 +4,7 @@ import { auth } from "../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +16,8 @@ export const Auth = () => {
   const signInButtonRef = useRef(null);
   const signUpButtonRef = useRef(null);
   const navigate = useNavigate();
+
+  signOut(auth); //forzar el cierre de sesión para evitar problemas
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -77,7 +80,7 @@ export const Auth = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <p>{error}</p>
-        <button ref={signInButtonRef} onClick={handleSignIn}>
+        <button type="submit" ref={signInButtonRef} onClick={handleSignIn}>
           Iniciar sesión
         </button>
         <button ref={signUpButtonRef} onClick={handleSignUp}>
