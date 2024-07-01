@@ -1,16 +1,18 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { signOut } from "firebase/auth";
 
 export function HomePage() {
-  const [email, setEmail] = useState("Email no encontrado, debe loguearse");
-  const { userEmail } = useContext(AuthContext);
+  const { userEmail, isLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    userEmail && setEmail(userEmail);
+    if (!isLogged) {
+      alert("No puede acceder a esta página sin haber iniciado sesión");
+      navigate("/auth");
+    }
   }, []);
 
   function handleBuscarAlojamientos() {
@@ -40,7 +42,7 @@ export function HomePage() {
     <div className="homeheader">
       <h1>CrazyWeekEnd</h1>
       <h2>
-        Usuario logueado: <strong>{email}</strong>
+        Usuario logueado: <strong>{userEmail}</strong>
       </h2>
       <img src="src\assets\LogoAPP.png" alt="Logo de la aplicación" />
       <div className="switchbuttons">

@@ -231,5 +231,13 @@ strong {
 }
 
 .accountimg {
-  width: 60%;
+  width: 66%;
+}
+
+#accounterror {
+  position: relative;
+  top: -8px;
+  text-align: center;
+  height: 3px;
+  color: red;
 }
