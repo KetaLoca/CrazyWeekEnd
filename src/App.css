@@ -183,3 +183,53 @@ strong {
   gap: 1rem;
   list-style-type: none;
 }
+
+.perfilform {
+  display: flex; /* Layout the form elements in a row */
+  flex-direction: column; /* Arrange elements vertically */
+  width: 300px; /* Adjust width as needed */
+  margin: 20px auto; /* Add margin for spacing */
+  padding: 20px; /* Add padding for spacing */
+  border: 1px solid #ccc; /* Add a subtle border */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.perfilform label {
+  display: block; /* Make labels block-level */
+  margin-bottom: 5px; /* Add spacing between label and input */
+  font-weight: bold; /* Make labels bolder */
+}
+
+.perfilform input[type="text"] {
+  width: 100%; /* Make inputs span the full width */
+  padding: 10px; /* Add padding for spacing */
+  border: 1px solid #ccc; /* Add a subtle border */
+  border-radius: 3px; /* Add rounded corners */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.perfilform input[type="text"]:focus {
+  outline: none; /* Remove default outline */
+  border-color: #007bff; /* Change border color on focus */
+}
+
+.perfilform button[type="submit"] {
+  display: inline-block; /* Make the button an inline-block element */
+  padding: 10px 20px; /* Add padding for spacing */
+  margin-top: 10px; /* Add margin above the button */
+  background-color: #007bff; /* Set background color to blue */
+  color: #fff; /* Set text color to white */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease; /* Add a smooth hover effect */
+}
+
+.perfilform button[type="submit"]:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+
+.accountimg {
+  width: 60%;
+}
