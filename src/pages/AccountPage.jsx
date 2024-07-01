@@ -12,7 +12,7 @@ export function AccountPage() {
   const [error, setError] = useState("");
   const guardarButtonRef = useRef(null);
   const navigate = useNavigate();
-  const { addUser } = useFirestore();
+  const { addUser, getUser } = useFirestore();
 
   useEffect(() => {
     if (!isLogged) {
@@ -29,7 +29,15 @@ export function AccountPage() {
   }, [error]);
 
   useEffect(() => {
-    
+    getUser(userEmail)
+      .then((user) => {
+        setNombre(user.nombre);
+        setApellidos(user.apellidos);
+        setTelefono(user.telefono);
+      })
+      .catch((e) => {
+        alert("Error recuperando usuario");
+      });
   }, []);
 
   function handleSubmit(e) {
