@@ -32,6 +32,7 @@ export function HomePage() {
       .then(() => {
         setIsLogged(false);
         navigate("/");
+        localStorage.removeItem("user");
       })
       .catch((error) => {
         console.log(error);
