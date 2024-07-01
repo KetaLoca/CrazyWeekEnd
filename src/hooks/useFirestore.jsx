@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
-import { Alojamiento } from "../models/classes";
 
 export const useFirestore = () => {
-  const [alojamientos, setAlojamientos] = useState();
+  const [alojamientos, setAlojamientos] = useState([]);
 
   useEffect(() => {
     async function fetchAlojamientos() {
