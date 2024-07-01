@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
+  const { setUserEmail, setIsLogged } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -33,6 +34,8 @@ export const Auth = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
+        setUserEmail(email);
+        setIsLogged(true);
         resetForm();
         navigate("/home");
       })
