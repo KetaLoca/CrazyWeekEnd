@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { User } from "../models/classes";
+import { useFirestore } from "../hooks/useFirestore";
 
 export function AccountPage() {
   const { userEmail, isLogged } = useContext(AuthContext);
@@ -10,6 +12,7 @@ export function AccountPage() {
   const [error, setError] = useState("");
   const guardarButtonRef = useRef(null);
   const navigate = useNavigate();
+  const { addUser } = useFirestore();
 
   useEffect(() => {
     if (!isLogged) {
@@ -18,8 +21,17 @@ export function AccountPage() {
     }
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setError("");
+    }, 2400);
+    return () => clearTimeout(timer);
+  }, [error]);
+
   function handleSubmit(e) {
     e.preventDefault();
+    const user = new User(userEmail, nombre, apellidos, telefono);
+    addUser(user);
     guardarButtonRef.current.blur();
   }
 

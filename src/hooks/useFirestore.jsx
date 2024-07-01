@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 export const useFirestore = () => {
   const [alojamientos, setAlojamientos] = useState([]);
@@ -21,5 +21,15 @@ export const useFirestore = () => {
     }
     fetchAlojamientos();
   }, []);
-  return { alojamientos };
+
+  async function addUser(user) {
+    await setDoc(doc(db, "users", user.email), {
+      email: user.email,
+      nombre: user.nombre,
+      apellidos: user.apellidos,
+      telefono: user.telefono,
+    });
+  }
+
+  return { alojamientos, addUser };
 };
