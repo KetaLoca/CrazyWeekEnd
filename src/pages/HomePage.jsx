@@ -5,7 +5,7 @@ import { auth } from "../firebaseConfig";
 import { signOut } from "firebase/auth";
 
 export function HomePage() {
-  const { userEmail, isLogged } = useContext(AuthContext);
+  const { userEmail, isLogged, setIsLogged } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +30,7 @@ export function HomePage() {
   function handleLogOut() {
     signOut(auth)
       .then(() => {
+        setIsLogged(false);
         navigate("/");
       })
       .catch((error) => {

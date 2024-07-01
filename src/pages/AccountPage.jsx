@@ -28,10 +28,21 @@ export function AccountPage() {
     return () => clearTimeout(timer);
   }, [error]);
 
+  useEffect(() => {
+    
+  }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
     const user = new User(userEmail, nombre, apellidos, telefono);
-    addUser(user);
+    addUser(user)
+      .then(() => {
+        setError("Usuario modificado correctamente");
+      })
+      .catch((e) => {
+        setError("Error añadiendo usuario");
+        console.log(e);
+      });
     guardarButtonRef.current.blur();
   }
 
