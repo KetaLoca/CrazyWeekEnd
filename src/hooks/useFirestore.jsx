@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
 import { User } from "../models/classes";
+import { auth } from "../firebaseConfig";
 
 export const useFirestore = () => {
   const [alojamientos, setAlojamientos] = useState([]);
@@ -35,14 +36,19 @@ export const useFirestore = () => {
   async function getUser(email) {
     const userRef = doc(db, "users", email);
     const docSnap = await getDoc(userRef);
-    const data = docSnap.data;
-    const user = new User(
-      data.email,
-      data.nombre,
-      data.apellidos,
-      data.telefono
-    );
-    return user;
+    if (docSnap.exists()) {
+      const userDoc = docSnap.data();
+      const user = new User(
+        userDoc.email,
+        userDoc.nombre,
+        userDoc.apellidos,
+        userDoc.telefono
+      );
+      console.log(user);
+      return user;
+    } else {
+      return null;
+    }
   }
 
   return { alojamientos, addUser, getUser };
