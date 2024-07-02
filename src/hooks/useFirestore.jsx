@@ -28,7 +28,7 @@ export const useFirestore = () => {
     const docSnap = await getDoc(docRef)
     if (docSnap.exists) {
       const data = docSnap.data
-      const alojamiento = new Alojamiento(id, data.nombre, data.descripcion, data.imgURL)
+      const alojamiento = new Alojamiento(id, data.nombre, data.descripcion)
       console.log(alojamiento)
       return alojamiento
     } else { return null }
