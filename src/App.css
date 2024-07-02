@@ -241,3 +241,19 @@ strong {
   height: 3px;
   color: red;
 }
+
+.filtros {
+  padding: 10px;
+  margin: 5px;
+}
+
+.filtros input {
+  margin: 6px;
+}
+
+.checkboxanimales {
+  color: #e9f672;
+  border: 1px solid #e9f672;
+  padding: 2px;
+  margin-right: 4px;
+}

@@ -26,8 +26,9 @@ export function Alojamientos() {
     <header className="filtros">
       <h1>Buscador de alojamientos</h1>
       <form className='form' onSubmit={handleSubmit}>
+        <span className="checkboxanimales"><label>Admiten animales</label>
+          <input type='checkbox' onChange={handleSort} checked={sort} /></span>
         <input onChange={handleChange} value={inputQuery} name='query' placeholder='Barra de búsqueda' />
-        <input type='checkbox' onChange={handleSort} checked={sort} />
         <button className='boton' type='submit'>Buscar</button>
       </form>
       {error && <p style={{ color: 'red' }} className='error'>{error}</p>}
