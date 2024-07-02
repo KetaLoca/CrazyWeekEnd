@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
-import { User } from "../models/classes";
+import { Alojamiento, User } from "../models/classes";
 
 export const useFirestore = () => {
   const [alojamientos, setAlojamientos] = useState([]);
@@ -22,6 +22,17 @@ export const useFirestore = () => {
     }
     fetchAlojamientos();
   }, []);
+
+  async function getAlojammiento(id) {
+    const docRef = doc(db, "alojamientos", id)
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists) {
+      const data = docSnap.data
+      const alojamiento = new Alojamiento(id, data.nombre, data.descripcion, data.imgURL)
+      return alojamiento
+      console.log(alojamiento)
+    } else { return null }
+  }
 
   async function addUser(user) {
     await setDoc(doc(db, "users", user.email), {
