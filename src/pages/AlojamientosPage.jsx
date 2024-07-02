@@ -1,9 +1,10 @@
 import React from "react";
 import { Alojamientos } from "../components/Alojamientos";
+import { FiltrosAlojamientos } from "../components/FiltrosAlojamientos";
 
 export function AlojamientosPage() {
   return (<div>
-    <h1>Lista de alojamientos</h1>
+    <FiltrosAlojamientos />
     <Alojamientos />
   </div>)
 }
