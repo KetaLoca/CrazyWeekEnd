@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 export function DetallesAlojamiento() {
     const { id } = useParams()
     const { getAlojammiento } = useFirestore()
-    const [alojamiento, setAlojamiento] = useState(null)
+    const alojamiento = getAlojammiento(id)
 
-    useEffect(() => {
-        async function fetchAlojamientos() {
-            const fetchedAlojamiento = await getAlojammiento(id)
-            setAlojamiento(fetchAlojamientos)
-        } fetchAlojamientos()
-    }, [])
+    // useEffect(() => {
+    //     async function fetchAlojamientos() {
+    //         const fetchedAlojamiento = await getAlojammiento(id)
+    //         setAlojamiento(fetchAlojamientos)
+    //     } fetchAlojamientos()
+    // }, [])
 
     if (!alojamiento) { return <h2>No se ha encontrado el alojamiento</h2> }
 
