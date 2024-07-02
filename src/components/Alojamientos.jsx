@@ -4,16 +4,13 @@ import { useFirestore } from "../hooks/useFirestore";
 export function Alojamientos() {
   const { alojamientos } = useFirestore();
   const [alojamientosList, setAlojamientosList] = useState(alojamientos)
-  const [inputQuery, setInputQuery] = useState("")
+  const [inputQuery, setInputQuery] = useState()
   const [sort, setSort] = useState(false)
   const [error, setError] = useState()
 
-  function handleSubmit(e) { e.preventDefault() }
+  function handleSubmit() { }
 
-  function handleChange(e) {
-    setInputQuery(e.target.value)
-    console.log(inputQuery)
-  }
+  function handleChange() { }
 
   function handleSort() { setSort(!sort) }
 
