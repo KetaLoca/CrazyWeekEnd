@@ -8,6 +8,7 @@ import { HomePage } from "./pages/HomePage";
 import { AccountPage } from "./pages/AccountPage";
 import { ReservasPage } from "./pages/ReservasPage";
 import { AlojamientosPage } from "./pages/AlojamientosPage";
+import { AlojamientoPage } from "./pages/AlojamientoPage"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<AlojamientosPage />} />
+        <Route path="/alojamiento:id" Component={<AlojamientoPage />} />
         <Route path="/reservations" element={<ReservasPage />} />
         <Route path="/account" element={<AccountPage />} />
       </Routes>

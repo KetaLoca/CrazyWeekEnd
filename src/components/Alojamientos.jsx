@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
+import { Link } from "react-router-dom";
 
 export function Alojamientos() {
   const { alojamientos } = useFirestore();
@@ -37,6 +38,7 @@ export function Alojamientos() {
       {filteredList.length > 0 ? (
         filteredList.map((alojamiento) => (
           <li key={alojamiento.id}>
+            <Link to={`/alojamiento/${alojamiento.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>Link</Link>
             <img
               src="https://www.ruralesdata.com/cache/alojamientos/aguirre-casa-rural/202-aguirre-casa-rural-elizondo-fachada.jpg"
               alt="Imagen casa rural"
