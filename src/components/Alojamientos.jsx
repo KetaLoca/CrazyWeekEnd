@@ -3,16 +3,21 @@ import { useFirestore } from "../hooks/useFirestore";
 
 export function Alojamientos() {
   const { alojamientos } = useFirestore();
-  const [alojamientosList, setAlojamientosList] = useState(alojamientos)
-  const [inputQuery, setInputQuery] = useState()
+  const [filteredList, setFilteredList] = useState(alojamientos)
+  const [inputQuery, setInputQuery] = useState("")
   const [sort, setSort] = useState(false)
-  const [error, setError] = useState()
+  const [error, setError] = useState("")
 
-  const sortedList = () => { }
+  useEffect(() => { setFilteredList(alojamientos) }, [])
 
-  function handleSubmit(e) { e.preventDefault() }
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
 
-  function handleChange(e) { setInputQuery(e.target.value) }
+  function handleChange(e) {
+    setInputQuery(e.target.value)
+    setFilteredList(alojamientos.filter((alojamiento) => alojamiento.nombre.toLowerCase().includes(inputQuery.toLowerCase())))
+  }
 
   function handleSort() { setSort(!sort) }
 
@@ -28,8 +33,8 @@ export function Alojamientos() {
       {error && <p style={{ color: 'red' }} className='error'>{error}</p>}
     </header>
     <ul className="alojamientos">
-      {alojamientos.length > 0 ? (
-        alojamientos.map((alojamiento) => (
+      {filteredList.length > 0 ? (
+        filteredList.map((alojamiento) => (
           <li key={alojamiento.id}>
             <img
               src="https://www.ruralesdata.com/cache/alojamientos/aguirre-casa-rural/202-aguirre-casa-rural-elizondo-fachada.jpg"
