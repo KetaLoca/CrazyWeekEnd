@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export function DetallesAlojamiento() {
     const { id } = useParams()
     const { getAlojammiento } = useFirestore()
-    const alojamiento = getAlojammiento(id)
+    const alojamiento = getAlojammiento(id) 
 
     // useEffect(() => {
     //     async function fetchAlojamientos() {
@@ -14,10 +14,8 @@ export function DetallesAlojamiento() {
     //     } fetchAlojamientos()
     // }, [])
 
-    if (!alojamiento) { return <h2>No se ha encontrado el alojamiento</h2> }
+    if (alojamiento == null) { return <h2>No se ha encontrado el alojamiento</h2> }
 
-    return (
-        <div>
-            <h1>{alojamiento.nombre}</h1>
-        </div>)
+    return <h1>{alojamiento.nombre}</h1>
+
 }
