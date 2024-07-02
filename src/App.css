@@ -249,6 +249,7 @@ strong {
 
 .filtros input {
   margin: 6px;
+  height: max-content;
 }
 
 .checkboxanimales {
