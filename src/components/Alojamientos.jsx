@@ -8,9 +8,11 @@ export function Alojamientos() {
   const [sort, setSort] = useState(false)
   const [error, setError] = useState()
 
-  function handleSubmit() { }
+  const sortedList = () => { }
 
-  function handleChange() { }
+  function handleSubmit(e) { e.preventDefault() }
+
+  function handleChange(e) { setInputQuery(e.target.value) }
 
   function handleSort() { setSort(!sort) }
 
