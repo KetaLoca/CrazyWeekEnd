@@ -19,7 +19,7 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<AlojamientosPage />} />
-        <Route path="/alojamiento:id" Component={<AlojamientoPage />} />
+        <Route path="/alojamiento/:id" element={<AlojamientoPage />} />
         <Route path="/reservations" element={<ReservasPage />} />
         <Route path="/account" element={<AccountPage />} />
       </Routes>
