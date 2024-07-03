@@ -98,10 +98,7 @@ export const useFirestore = () => {
   }
 
   async function getReservas(email) {
-    const collectionRef = query(
-      collection(db, "reservas"),
-      where("emailuser", "==", email)
-    );
+    const collectionRef = collection(db, "reservas");
     const docSnap = await getDocs(collectionRef);
     const reservasList = docSnap.docs.map((doc) => ({
       id: doc.id,
