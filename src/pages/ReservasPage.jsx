@@ -1,5 +1,6 @@
 import React from "react";
+import { Reservas } from "../components/Reservas";
 
 export function ReservasPage() {
-    return <h1>Aquí se mostrarán las reservas</h1>
+  return <Reservas />;
 }
