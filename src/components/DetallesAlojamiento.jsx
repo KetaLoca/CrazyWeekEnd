@@ -23,9 +23,9 @@ export function DetallesAlojamiento() {
 
   if (loading) {
     return <h1>Cargando</h1>;
-  } else if (alojamiento == null) {
-    return <h1>No se ha encontrado el alojamiento</h1>;
-  } else {
-    <h1>{alojamiento.nombre}</h1>;
   }
+  if (alojamiento == null) {
+    return <h1>No se ha encontrado el alojamiento</h1>;
+  }
+  return <h1>{alojamiento.nombre}</h1>;
 }
