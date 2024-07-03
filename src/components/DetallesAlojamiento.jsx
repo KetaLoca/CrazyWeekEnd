@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
@@ -23,6 +25,11 @@ export function DetallesAlojamiento() {
 
   function handleReservar(e) {
     e.preventDefault();
+    e.target.blur();
+    if (!startDate || !endDate) {
+      alert("Debe seleccionar ambas fechas antes de reservar");
+      return;
+    }
   }
 
   if (loading) {
@@ -34,22 +41,16 @@ export function DetallesAlojamiento() {
   return (
     <div className="alojamiento">
       <h1>{alojamiento.nombre}</h1>
-      <img
-        src="https://www.ruralesdata.com/cache/alojamientos/aguirre-casa-rural/202-aguirre-casa-rural-elizondo-fachada.jpg"
-        alt="Imagen casa rural"
-      />
+      <img src={alojamiento.imgURL} alt="Imagen casa rural" />
       <h2>{alojamiento.descripcion}</h2>
 
       <div>
         <label>
           Fecha de inicio:
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => {
-              e.preventDefault();
-              setStartDate(e.target.value);
-            }}
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            dateFormat="dd/MM/yyyy"
           />
         </label>
       </div>
@@ -57,12 +58,10 @@ export function DetallesAlojamiento() {
       <div>
         <label>
           Fecha de fin:{" "}
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => {
-              setEndDate(e.target.value);
-            }}
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            dateFormat="dd/MM/yyyy"
           />
         </label>
       </div>
