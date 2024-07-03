@@ -21,7 +21,9 @@ export function DetallesAlojamiento() {
       });
   }, [id]);
 
-  console.log(alojamiento);
+  function handleReservar(e) {
+    e.preventDefault();
+  }
 
   if (loading) {
     return <h1>Cargando</h1>;
@@ -45,6 +47,7 @@ export function DetallesAlojamiento() {
             type="date"
             value={startDate}
             onChange={(e) => {
+              e.preventDefault();
               setStartDate(e.target.value);
             }}
           />
@@ -63,7 +66,7 @@ export function DetallesAlojamiento() {
           />
         </label>
       </div>
-      <button>Reservar</button>
+      <button onClick={handleReservar}>Reservar</button>
     </div>
   );
 }

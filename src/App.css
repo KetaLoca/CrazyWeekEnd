@@ -266,36 +266,12 @@ strong {
   font-family: Arial, sans-serif;
 }
 
-.alojamiento img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.alojamiento label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #2cd809;
-}
-
-.alojamiento input[type="date"] {
-  width: 40%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
 .alojamiento button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 1em;
   color: #fff;
-  background-color: #007BFF;
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
