@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ export function DetallesAlojamiento() {
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const today = new Date();
 
   useEffect(() => {
     getAlojammiento(id)
@@ -32,6 +34,15 @@ export function DetallesAlojamiento() {
     }
   }
 
+  const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
+    <input
+      value={value}
+      onClick={onClick}
+      ref={ref}
+      style={{ textAlign: "center" }} // Centrar el texto
+    />
+  ));
+
   if (loading) {
     return <h1>Cargando</h1>;
   }
@@ -51,17 +62,27 @@ export function DetallesAlojamiento() {
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="dd/MM/yyyy"
+            customInput={<CustomInput />}
+            minDate={today}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
           />
         </label>
       </div>
 
       <div>
         <label>
-          Fecha de fin:{" "}
+          Fecha de fin:
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="dd/MM/yyyy"
+            customInput={<CustomInput />}
+            minDate={startDate || today}
+            selectsEnd
+            startDate={startDate}
+            endDate={endDate}
           />
         </label>
       </div>

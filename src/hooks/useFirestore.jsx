@@ -69,5 +69,7 @@ export const useFirestore = () => {
     }
   }
 
+  async function getReservas(email) {}
+
   return { alojamientos, addUser, getUser, getAlojammiento };
 };
