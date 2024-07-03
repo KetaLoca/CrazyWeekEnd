@@ -14,8 +14,5 @@ export function DetallesAlojamiento() {
   if (alojamiento == null) {
     return <h2>No se ha encontrado el alojamiento</h2>;
   }
-
-  if (alojamiento) {
-    return <h1>{alojamiento.nombre}</h1>;
-  }
+  return <h1>{alojamiento.nombre}</h1>;
 }

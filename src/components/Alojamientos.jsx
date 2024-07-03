@@ -34,9 +34,6 @@ export function Alojamientos() {
 
   function handleSort() {
     setSort(!sort);
-    setFilteredList(
-      filteredList.filter((alojamiento) => alojamiento.animales == sort)
-    );
   }
 
   return (

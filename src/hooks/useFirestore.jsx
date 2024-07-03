@@ -24,12 +24,18 @@ export const useFirestore = () => {
   }, []);
 
   async function getAlojammiento(id) {
-    const docRef = doc(db, "alojamientos", id)
-    const docSnap = await getDoc(docRef)
-      const data = docSnap.data()
-      const alojamiento = new Alojamiento(id, data.nombre, data.descripcion, null, data.animales)
-      console.log(alojamiento)
-      return alojamiento
+    const docRef = doc(db, "alojamientos", id);
+    const docSnap = await getDoc(docRef);
+    const data = docSnap.data();
+    const alojamiento = new Alojamiento(
+      id,
+      data.nombre,
+      data.descripcion,
+      null,
+      data.animales
+    );
+    console.log(alojamiento);
+    return alojamiento;
   }
 
   async function addUser(user) {
