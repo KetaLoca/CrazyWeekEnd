@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
-import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  getDoc,
+  query,
+  where,
+} from "firebase/firestore";
 import { Alojamiento, User } from "../models/classes";
 
 export const useFirestore = () => {
@@ -69,7 +77,19 @@ export const useFirestore = () => {
     }
   }
 
-  async function getReservas(email) {}
+  async function getReservas(email) {
+    const collectionRef = query(
+      collection(db, "reservas"),
+      where("emailuser", "==", email)
+    );
+    const docSnap = await getDocs(collectionRef);
+    const reservasList = docSnap.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    console.log(reservasList);
+    return reservasList;
+  }
 
   return { alojamientos, addUser, getUser, getAlojammiento };
 };
