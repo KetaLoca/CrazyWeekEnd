@@ -8,10 +8,15 @@ export function Alojamientos() {
   const [inputQuery, setInputQuery] = useState("");
   const [sort, setSort] = useState(false);
   const searchBtnRef = useRef(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     setFilteredList(alojamientos);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 350);
+    return () => clearTimeout(timer);
   }, [alojamientos]);
 
   function handleSubmit(e) {
@@ -35,6 +40,8 @@ export function Alojamientos() {
   function handleSort() {
     setSort(!sort);
   }
+
+  if (loading) return <h1>Cargando</h1>;
 
   return (
     <div>

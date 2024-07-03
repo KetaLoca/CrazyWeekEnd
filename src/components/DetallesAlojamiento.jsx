@@ -27,5 +27,14 @@ export function DetallesAlojamiento() {
   if (alojamiento == null) {
     return <h1>No se ha encontrado el alojamiento</h1>;
   }
-  return <h1>{alojamiento.nombre}</h1>;
+  return (
+    <div>
+      <h1>{alojamiento.nombre}</h1>
+      <img
+        src="https://www.ruralesdata.com/cache/alojamientos/aguirre-casa-rural/202-aguirre-casa-rural-elizondo-fachada.jpg"
+        alt="Imagen casa rural"
+      />
+      <h2>{alojamiento.descripcion}</h2>
+    </div>
+  );
 }
