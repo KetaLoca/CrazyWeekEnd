@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
 import { Link } from "react-router-dom";
 
@@ -7,6 +7,7 @@ export function Alojamientos() {
   const [filteredList, setFilteredList] = useState(alojamientos);
   const [inputQuery, setInputQuery] = useState("");
   const [sort, setSort] = useState(false);
+  const searchBtnRef = useRef(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -15,15 +16,20 @@ export function Alojamientos() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setFilteredList(
+      alojamientos.filter(
+        (alojamiento) =>
+          alojamiento.nombre.toLowerCase().includes(inputQuery.toLowerCase()) ||
+          alojamiento.descripcion
+            .toLowerCase()
+            .includes(inputQuery.toLowerCase())
+      )
+    );
+    searchBtnRef.current.blur();
   }
 
   function handleChange(e) {
     setInputQuery(e.target.value);
-    setFilteredList(
-      alojamientos.filter((alojamiento) =>
-        alojamiento.nombre.toLowerCase().includes(inputQuery.toLowerCase())
-      )
-    );
   }
 
   function handleSort() {
@@ -45,7 +51,7 @@ export function Alojamientos() {
             name="query"
             placeholder="Barra de búsqueda"
           />
-          <button className="boton" type="submit">
+          <button ref={searchBtnRef} className="boton" type="submit">
             Buscar
           </button>
         </form>
