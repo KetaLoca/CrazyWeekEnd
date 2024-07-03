@@ -6,13 +6,26 @@ export function DetallesAlojamiento() {
   const { id } = useParams();
   const { getAlojammiento } = useFirestore();
   const [alojamiento, setAlojamiento] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setAlojamiento(getAlojammiento(id));
+    getAlojammiento(id)
+      .then((a) => {
+        setAlojamiento(a);
+        setLoading(false);
+      })
+      .catch((e) => {
+        alert("Error recuperando el alojamiento");
+      });
   }, [id]);
 
-  if (alojamiento == null) {
-    return <h2>No se ha encontrado el alojamiento</h2>;
+  console.log(alojamiento);
+
+  if (loading) {
+    return <h1>Cargando</h1>;
+  } else if (alojamiento == null) {
+    return <h1>No se ha encontrado el alojamiento</h1>;
+  } else {
+    <h1>{alojamiento.nombre}</h1>;
   }
-  return <h1>{alojamiento.nombre}</h1>;
 }
