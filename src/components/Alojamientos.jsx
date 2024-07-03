@@ -68,18 +68,18 @@ export function Alojamientos() {
         {filteredList.length > 0 ? (
           filteredList.map((alojamiento) => (
             <li key={alojamiento.id}>
-              <Link
-                to={`/alojamiento/${alojamiento.id}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                Link
-              </Link>
               <img
                 src="https://www.ruralesdata.com/cache/alojamientos/aguirre-casa-rural/202-aguirre-casa-rural-elizondo-fachada.jpg"
                 alt="Imagen casa rural"
               />
               <h2>{alojamiento.nombre}</h2>
               <p>{alojamiento.descripcion}</p>
+              <Link
+                to={`/alojamiento/${alojamiento.id}`}
+                style={{ textDecoration: "none", color: "green" }}
+              >
+                Detalles
+              </Link>
             </li>
           ))
         ) : (
