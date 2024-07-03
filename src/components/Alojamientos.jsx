@@ -3,8 +3,8 @@ import { useFirestore } from "../hooks/useFirestore";
 import { Link } from "react-router-dom";
 
 export function Alojamientos() {
-  const { alojamientos } = useFirestore();
-  const [filteredList, setFilteredList] = useState(alojamientos);
+  const { getAlojamientos } = useFirestore();
+  const [filteredList, setFilteredList] = useState(getAlojamientos);
   const [inputQuery, setInputQuery] = useState("");
   const [sort, setSort] = useState(false);
   const searchBtnRef = useRef(null);
@@ -12,12 +12,15 @@ export function Alojamientos() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setFilteredList(alojamientos);
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 350);
-    return () => clearTimeout(timer);
-  }, [alojamientos]);
+    getAlojamientos()
+      .then((alojamientos) => {
+        setFilteredList(alojamientos);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setError("Error al recuperar lista de alojamientos");
+      });
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -72,10 +75,7 @@ export function Alojamientos() {
         {filteredList.length > 0 ? (
           filteredList.map((alojamiento) => (
             <li key={alojamiento.id}>
-              <img
-                src={alojamiento.imgURL}
-                alt="Imagen casa rural"
-              />
+              <img src={alojamiento.imgURL} alt="Imagen casa rural" />
               <h2>{alojamiento.nombre}</h2>
               <p>{alojamiento.descripcion}</p>
               <Link

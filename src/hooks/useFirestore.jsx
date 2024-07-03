@@ -12,24 +12,16 @@ import {
 import { Alojamiento, Reserva, User } from "../models/classes";
 
 export const useFirestore = () => {
-  const [alojamientos, setAlojamientos] = useState([]);
-
-  useEffect(() => {
-    async function fetchAlojamientos() {
-      try {
-        const alojamientosColection = collection(db, "alojamientos");
-        const snapshot = await getDocs(alojamientosColection);
-        const alojamientosList = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setAlojamientos(alojamientosList);
-      } catch (error) {
-        console.error("Error recuperando los alojemientos", error);
-      }
-    }
-    fetchAlojamientos();
-  }, []);
+  async function getAlojamientos() {
+    const alojamientosColection = collection(db, "alojamientos");
+    const snapshot = await getDocs(alojamientosColection);
+    const alojamientosList = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    console.log(alojamientosList);
+    return alojamientosList;
+  }
 
   const getAlojammiento = async (id) => {
     const docRef = doc(db, "alojamientos", id);
@@ -120,7 +112,7 @@ export const useFirestore = () => {
   }
 
   return {
-    alojamientos,
+    getAlojamientos,
     addUser,
     getUser,
     getAlojammiento,
