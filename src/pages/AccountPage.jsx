@@ -42,6 +42,10 @@ export function AccountPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (userEmail == "Aún no se ha logueado") {
+      setError("Para modificar su perfil debe iniciar sesión antes");
+      return;
+    }
     const user = new User(userEmail, nombre, apellidos, telefono);
     addUser(user)
       .then(() => {
