@@ -26,12 +26,10 @@ export const useFirestore = () => {
   async function getAlojammiento(id) {
     const docRef = doc(db, "alojamientos", id)
     const docSnap = await getDoc(docRef)
-    if (docSnap.exists) {
       const data = docSnap.data()
       const alojamiento = new Alojamiento(id, data.nombre, data.descripcion)
       console.log(alojamiento)
       return alojamiento
-    } else { return null }
   }
 
   async function addUser(user) {
