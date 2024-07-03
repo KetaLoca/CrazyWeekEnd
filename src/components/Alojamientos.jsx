@@ -73,7 +73,7 @@ export function Alojamientos() {
           filteredList.map((alojamiento) => (
             <li key={alojamiento.id}>
               <img
-                src="https://www.ruralesdata.com/cache/alojamientos/aguirre-casa-rural/202-aguirre-casa-rural-elizondo-fachada.jpg"
+                src={alojamiento.imgURL}
                 alt="Imagen casa rural"
               />
               <h2>{alojamiento.nombre}</h2>

@@ -32,7 +32,7 @@ export const useFirestore = () => {
         id,
         data.nombre,
         data.descripcion,
-        null,
+        data.imgURL,
         data.animales
       );
       console.log(alojamiento);
