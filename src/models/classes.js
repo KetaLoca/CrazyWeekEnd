@@ -16,3 +16,13 @@ export class User {
     this.telefono = telefono;
   }
 }
+
+export class Reserva {
+  constructor(id, emailUser, idAlojamiento, fechaInicio, fechaFin) {
+    this.id = id;
+    this.emailUser = emailUser;
+    this.idAlojamiento = idAlojamiento;
+    this.fechaInicio = fechaInicio;
+    this.fechaFin = fechaFin;
+  }
+}
