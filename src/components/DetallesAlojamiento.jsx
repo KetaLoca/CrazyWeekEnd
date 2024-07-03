@@ -39,7 +39,7 @@ export function DetallesAlojamiento() {
       value={value}
       onClick={onClick}
       ref={ref}
-      style={{ textAlign: "center" }} // Centrar el texto
+      style={{ textAlign: "center" }}
     />
   ));
 

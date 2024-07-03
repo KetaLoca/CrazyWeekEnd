@@ -9,7 +9,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { Alojamiento, User } from "../models/classes";
+import { Alojamiento, Reserva, User } from "../models/classes";
 
 export const useFirestore = () => {
   const [alojamientos, setAlojamientos] = useState([]);
@@ -77,6 +77,34 @@ export const useFirestore = () => {
     }
   }
 
+  async function addReserva(reserva) {
+    await setDoc(doc(db, "reservas", reserva.id), {
+      id: reserva.id,
+      emailuser: reserva.emailUser,
+      idalojamiento: reserva.idAlojamiento,
+      fechaInicio: reserva.fechaInicio,
+      fechaFin: reserva.fechaFin,
+    });
+  }
+
+  async function getReserva(id) {
+    const docRef = doc(db, "reservas", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists) {
+      const data = docSnap.data();
+      const reserva = new Reserva(
+        data.id,
+        data.emailuser,
+        data.idalojamiento,
+        data.fechaInicio,
+        data.fechaFin
+      );
+      return reserva;
+    } else {
+      return null;
+    }
+  }
+
   async function getReservas(email) {
     const collectionRef = query(
       collection(db, "reservas"),
@@ -91,5 +119,13 @@ export const useFirestore = () => {
     return reservasList;
   }
 
-  return { alojamientos, addUser, getUser, getAlojammiento };
+  return {
+    alojamientos,
+    addUser,
+    getUser,
+    getAlojammiento,
+    addReserva,
+    getReserva,
+    getReservas,
+  };
 };
