@@ -34,7 +34,7 @@ export function DetallesAlojamiento() {
       alert("Debe seleccionar ambas fechas antes de reservar");
       return;
     }
-    const reserva = new Reserva(userEmail, alojamiento.id, startDate, endDate)
+    const reserva = new Reserva(userEmail, alojamiento.id, startDate.toString(), endDate.toString())
 
     addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => {
       alert("Error añadiendo reserva")
