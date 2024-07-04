@@ -9,7 +9,8 @@ import { Reserva } from "../models/classes";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
-  const { getAlojammiento } = useFirestore();
+  const email = useContext(AuthContext)
+  const { getAlojammiento, addReserva } = useFirestore()
   const [alojamiento, setAlojamiento] = useState(null);
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
@@ -29,17 +30,13 @@ export function DetallesAlojamiento() {
 
   function handleReservar(e) {
     e.preventDefault();
-    e.target.blur();
     if (!startDate || !endDate) {
       alert("Debe seleccionar ambas fechas antes de reservar");
       return;
     }
+    // const reserva = new Reserva(email, alojamiento.id, startDate.toString(), endDate.toString())
 
-    const email = useContext(AuthContext)
-    const { addReserva } = useFirestore()
-    const reserva = new Reserva(email, alojamiento.id, startDate, endDate)
-
-    addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => { alert("Error añadiendo reserva") })
+    // addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => { alert("Error añadiendo reserva") })
   }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
@@ -70,7 +67,7 @@ export function DetallesAlojamiento() {
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="dd/MM/yyyy"
-            customInput={<CustomInput />}
+            //customInput={<CustomInput />}
             minDate={today}
             selectsStart
             startDate={startDate}
@@ -86,7 +83,7 @@ export function DetallesAlojamiento() {
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="dd/MM/yyyy"
-            customInput={<CustomInput />}
+            //customInput={<CustomInput />}
             minDate={startDate || today}
             selectsEnd
             startDate={startDate}
