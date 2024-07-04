@@ -34,9 +34,10 @@ export function DetallesAlojamiento() {
       alert("Debe seleccionar ambas fechas antes de reservar");
       return;
     }
-    // const reserva = new Reserva(email, alojamiento.id, startDate.toString(), endDate.toString())
+    const reserva = new Reserva(email, alojamiento.id, startDate.toString(), endDate.toString())
 
-    // addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => { alert("Error añadiendo reserva") })
+    addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => { alert("Error añadiendo reserva") })
+    e.target.blur()
   }
 
   const CustomInput = React.forwardRef(({ value, onClick, onChange }, ref) => (
