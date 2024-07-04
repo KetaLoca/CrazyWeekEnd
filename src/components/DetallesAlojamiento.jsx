@@ -9,7 +9,7 @@ import { Reserva } from "../models/classes";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
-  const email = useContext(AuthContext)
+  const { userEmail } = useContext(AuthContext)
   const { getAlojammiento, addReserva } = useFirestore()
   const [alojamiento, setAlojamiento] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,9 +34,12 @@ export function DetallesAlojamiento() {
       alert("Debe seleccionar ambas fechas antes de reservar");
       return;
     }
-    const reserva = new Reserva(email, alojamiento.id, startDate.toString(), endDate.toString())
+    const reserva = new Reserva(userEmail, alojamiento.id, startDate, endDate)
 
-    addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => { alert("Error añadiendo reserva") })
+    addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => {
+      alert("Error añadiendo reserva")
+      console.log(e)
+    })
     e.target.blur()
   }
 
