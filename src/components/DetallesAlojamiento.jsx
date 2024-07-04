@@ -37,6 +37,7 @@ export function DetallesAlojamiento() {
     }
     const formattedStartDate = format(startDate, 'yyyy-MM-dd');
     const formattedEndDate = format(endDate, 'yyyy-MM-dd');
+
     const reserva = new Reserva(userEmail, alojamiento.id, formattedStartDate, formattedEndDate)
 
     addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => {

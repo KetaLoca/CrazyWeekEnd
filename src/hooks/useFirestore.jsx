@@ -19,7 +19,6 @@ export const useFirestore = () => {
       id: doc.id,
       ...doc.data(),
     }));
-    console.log(alojamientosList);
     return alojamientosList;
   }
 
@@ -35,7 +34,6 @@ export const useFirestore = () => {
         data.imgURL,
         data.animales
       );
-      console.log(alojamiento);
       return alojamiento;
     } else {
       return null;
@@ -62,7 +60,6 @@ export const useFirestore = () => {
         userDoc.apellidos,
         userDoc.telefono
       );
-      console.log(user);
       return user;
     } else {
       return null;
