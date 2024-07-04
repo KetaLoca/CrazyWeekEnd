@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import { format } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
@@ -34,7 +35,9 @@ export function DetallesAlojamiento() {
       alert("Debe seleccionar ambas fechas antes de reservar");
       return;
     }
-    const reserva = new Reserva(userEmail, alojamiento.id, startDate.toString(), endDate.toString())
+    const formattedStartDate = format(startDate, 'yyyy-MM-dd');
+    const formattedEndDate = format(endDate, 'yyyy-MM-dd');
+    const reserva = new Reserva(userEmail, alojamiento.id, formattedStartDate, formattedEndDate)
 
     addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => {
       alert("Error añadiendo reserva")
@@ -71,7 +74,7 @@ export function DetallesAlojamiento() {
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="dd/MM/yyyy"
+            dateFormat="yyyy-MM-dd"
             customInput={<CustomInput
               onChange={(e) => { setStartDate(e.target.value) }}
             />}
@@ -89,7 +92,7 @@ export function DetallesAlojamiento() {
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
-            dateFormat="dd/MM/yyyy"
+            dateFormat="yyyy-MM-dd"
             customInput={<CustomInput
               onChange={(e) => { setEndDate(e.target.value) }}
             />}
