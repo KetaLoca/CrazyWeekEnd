@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { db } from "../firebaseConfig";
 import {
   collection,
@@ -12,6 +12,7 @@ import {
 import { Alojamiento, Reserva, User } from "../models/classes";
 
 export const useFirestore = () => {
+
   async function getAlojamientos() {
     const alojamientosColection = collection(db, "alojamientos");
     const snapshot = await getDocs(alojamientosColection);
@@ -95,17 +96,16 @@ export const useFirestore = () => {
   }
 
   async function getReservas(email) {
-    const collectionRef = collection(db, "reservas");
-    const consulta = query(
-      collectionRef,
-      where("emailuser", "==", email.toString())
-    );
-    const docSnap = await getDocs(consulta);
-    const reservasList = docSnap.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    return reservasList;
+    const alojamientosColection = collection(db, "alojamientos");
+    const snapshot = await getDocs(alojamientosColection);
+    if (snapshot.exists) {
+      const alojamientosList = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(alojamientosList)
+      return alojamientosList;
+    }
   }
 
   return {
