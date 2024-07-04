@@ -28,8 +28,6 @@ export function DetallesAlojamiento() {
   }, [id]);
 
   function handleReservar(e) {
-    const email = useContext(AuthContext)
-
     e.preventDefault();
     e.target.blur();
     if (!startDate || !endDate) {
@@ -37,7 +35,11 @@ export function DetallesAlojamiento() {
       return;
     }
 
+    const email = useContext(AuthContext)
+    const { addReserva } = useFirestore()
+    const reserva = new Reserva(email, alojamiento.id, startDate, endDate)
 
+    addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => { alert("Error añadiendo reserva") })
   }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => (

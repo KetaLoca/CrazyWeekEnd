@@ -1,8 +1,8 @@
 import { v4 as UUID } from 'uuid'
 
 export class Alojamiento {
-  constructor(nombre, descripcion, imgURL, animales) {
-    this.id = UUID();
+  constructor(id, nombre, descripcion, imgURL, animales) {
+    this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.imgURL = imgURL;
