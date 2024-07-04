@@ -46,7 +46,7 @@ export function HomePage() {
       <h2>
         Usuario logueado: <strong>{userEmail}</strong>
       </h2>
-      <img src="src\assets\LogoAPP.png" alt="Logo de la aplicación" />
+      <img src="https://firebasestorage.googleapis.com/v0/b/crazyweekend570.appspot.com/o/LogoAPP.png?alt=media&token=d4152f65-fdcb-4fcd-8c07-329d13007905" alt="Logo de la aplicación" />
       <div className="switchbuttons">
         <button onClick={handleBuscarAlojamientos}>Buscar alojamientos</button>
         <button onClick={handleMisReservas}>Consultar mis reservas</button>
