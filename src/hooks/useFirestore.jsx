@@ -95,17 +95,14 @@ export const useFirestore = () => {
     }
   }
 
-  async function getReservas(email) {
-    const alojamientosColection = collection(db, "alojamientos");
-    const snapshot = await getDocs(alojamientosColection);
-    if (snapshot.exists) {
-      const alojamientosList = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      console.log(alojamientosList)
-      return alojamientosList;
-    }
+  const getReservas = async (email) => {
+    const collectionRef = collection(db, "reservas")
+    const docSnap = await getDocs(collectionRef)
+    const reservas = docSnap.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    return reservas
   }
 
   return {

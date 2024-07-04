@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export function Alojamientos() {
   const { getAlojamientos } = useFirestore();
-  const [filteredList, setFilteredList] = useState(getAlojamientos);
+  const [filteredList, setFilteredList] = useState();
   const [inputQuery, setInputQuery] = useState("");
   const [sort, setSort] = useState(false);
   const searchBtnRef = useRef(null);
