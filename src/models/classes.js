@@ -1,6 +1,8 @@
+import { v4 as UUID } from 'uuid'
+
 export class Alojamiento {
   constructor(id, nombre, descripcion, imgURL, animales) {
-    this.id = id;
+    this.id = UUID();
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.imgURL = imgURL;
@@ -19,7 +21,7 @@ export class User {
 
 export class Reserva {
   constructor(id, emailUser, idAlojamiento, fechaInicio, fechaFin) {
-    this.id = id;
+    this.id = UUID();
     this.emailUser = emailUser;
     this.idAlojamiento = idAlojamiento;
     this.fechaInicio = fechaInicio;
