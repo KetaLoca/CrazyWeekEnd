@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../context/AuthContext";
+import { Reserva } from "../models/classes";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
@@ -26,12 +28,16 @@ export function DetallesAlojamiento() {
   }, [id]);
 
   function handleReservar(e) {
+    const email = useContext(AuthContext)
+
     e.preventDefault();
     e.target.blur();
     if (!startDate || !endDate) {
       alert("Debe seleccionar ambas fechas antes de reservar");
       return;
     }
+
+
   }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
