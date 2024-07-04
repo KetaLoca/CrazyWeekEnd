@@ -39,9 +39,10 @@ export function DetallesAlojamiento() {
     // addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => { alert("Error añadiendo reserva") })
   }
 
-  const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
+  const CustomInput = React.forwardRef(({ value, onClick, onChange }, ref) => (
     <input
       value={value}
+      onChange={onChange}
       onClick={onClick}
       ref={ref}
       style={{ textAlign: "center" }}
@@ -67,7 +68,9 @@ export function DetallesAlojamiento() {
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="dd/MM/yyyy"
-            //customInput={<CustomInput />}
+            customInput={<CustomInput
+              onChange={(e) => { setStartDate(e.target.value) }}
+            />}
             minDate={today}
             selectsStart
             startDate={startDate}
@@ -83,7 +86,9 @@ export function DetallesAlojamiento() {
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="dd/MM/yyyy"
-            //customInput={<CustomInput />}
+            customInput={<CustomInput
+              onChange={(e) => { setEndDate(e.target.value) }}
+            />}
             minDate={startDate || today}
             selectsEnd
             startDate={startDate}
