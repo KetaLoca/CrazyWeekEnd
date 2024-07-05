@@ -284,3 +284,19 @@ strong {
 .alojamiento button:hover {
   background-color: #0056b3;
 }
+
+.reservadetalles button {
+  display: inline-block; /* Make the button an inline-block element */
+  padding: 10px 20px; /* Add padding for spacing */
+  margin-top: 10px; /* Add margin above the button */
+  background-color: #007bff; /* Set background color to blue */
+  color: #fff; /* Set text color to white */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease; /* Add a smooth hover effect */
+}
+
+.reservadetalles button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}

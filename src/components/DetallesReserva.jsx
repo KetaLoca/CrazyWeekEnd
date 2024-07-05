@@ -30,6 +30,10 @@ export function DetallesReserva() {
       });
   }, [id]);
 
+  function handleDelete(e) {
+    e.preventDefault();
+  }
+
   if (loading) return <h1>Cargando</h1>;
 
   return (
@@ -43,7 +47,7 @@ export function DetallesReserva() {
           </strong>
           <img src={alojamiento.imgURL} />
           <h3>{alojamiento.descripcion}</h3>
-          <button>Eliminar reserva</button>
+          <button onClick={handleDelete}>Eliminar reserva</button>
         </div>
       ) : (
         <h1>No hay datos</h1>
