@@ -8,6 +8,7 @@ import {
   getDoc,
   query,
   where,
+  deleteDoc,
 } from "firebase/firestore";
 import { Alojamiento, Reserva, User } from "../models/classes";
 
@@ -92,6 +93,11 @@ export const useFirestore = () => {
     } else {
       return null;
     }
+  }
+
+  async function deleteReserva(id) {
+    const docRef = doc(db, "reservas", id);
+    await deleteDoc(docRef);
   }
 
   const getReservas = async (email) => {
