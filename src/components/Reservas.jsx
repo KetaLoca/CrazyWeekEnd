@@ -26,11 +26,11 @@ export function Reservas() {
   return (
     <div>
       <ul>
-        {reservas.map((it) => {
+        {reservas.map((it) => (
           <li key={it.id}>
-            <ReservaElement reserva={it} />
-          </li>;
-        })}
+            {<ReservaElement reservas={it} />}
+          </li>
+        ))}
       </ul>
     </div>
   );
