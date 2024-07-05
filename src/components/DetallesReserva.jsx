@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 
 export function DetallesReserva() {
@@ -8,17 +8,17 @@ export function DetallesReserva() {
   const [alojamiento, setAlojamiento] = useState();
   const [reserva, setReserva] = useState();
   const [loading, setLoading] = useState(true);
+  const { deleteReserva } = useFirestore();
+  const navigate = useNavigate()
 
   useEffect(() => {
     getReserva(id)
       .then((result) => {
         setReserva(result);
-        console.log(result);
 
         getAlojamiento(result.idAlojamiento)
           .then((result) => {
             setAlojamiento(result);
-            console.log(result);
             setLoading(false);
           })
           .catch((e) => {
@@ -32,6 +32,14 @@ export function DetallesReserva() {
 
   function handleDelete(e) {
     e.preventDefault();
+    deleteReserva(id)
+      .then(() => {
+        alert("Reserva eliminada correctamente");
+        navigate("/reservations")
+      })
+      .catch((e) => {
+        alert("Ha ocurrido un error eliminando el usuario");
+      });
   }
 
   if (loading) return <h1>Cargando</h1>;

@@ -117,6 +117,7 @@ export const useFirestore = () => {
     getUser,
     addReserva,
     getReserva,
+    deleteReserva,
     getReservas,
   };
 };
