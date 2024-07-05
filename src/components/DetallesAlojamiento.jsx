@@ -11,7 +11,7 @@ import { Reserva } from "../models/classes";
 export function DetallesAlojamiento() {
   const { id } = useParams();
   const { userEmail } = useContext(AuthContext)
-  const { getAlojammiento, addReserva } = useFirestore()
+  const { getAlojamiento, addReserva } = useFirestore()
   const [alojamiento, setAlojamiento] = useState(null);
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
@@ -19,7 +19,7 @@ export function DetallesAlojamiento() {
   const today = new Date();
 
   useEffect(() => {
-    getAlojammiento(id)
+    getAlojamiento(id)
       .then((a) => {
         setAlojamiento(a);
         setLoading(false);
