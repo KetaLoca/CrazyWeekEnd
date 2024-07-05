@@ -29,7 +29,7 @@ export const ReservaElement = ({ reserva }) => {
       />
       <p>{reserva ? reserva.fechaInicio : "Fecha no encontrada"}</p>
       <Link
-        to={`/reserva/${reserva.id}`}
+        to={`/reservation/${reserva.id}`}
         style={{ textDecoration: "none", color: "green" }}
       >
         Detalles
