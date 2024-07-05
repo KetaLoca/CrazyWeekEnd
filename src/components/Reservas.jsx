@@ -25,13 +25,17 @@ export function Reservas() {
 
   return (
     <div>
-      <ul>
-        {reservas.map((reserva) => (
-          <li key={reserva.id}>
-            <ReservaElement reserva={reserva} />
-          </li>
-        ))}
-      </ul>
+      {reservas.length > 0 ? (
+        <ul>
+          {reservas.map((reserva) => (
+            <li key={reserva.id}>
+              <ReservaElement reserva={reserva} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h1>No hay reservas por el momento</h1>
+      )}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
+import { Link } from "react-router-dom";
 
 export const ReservaElement = ({ reserva }) => {
   const [alojamiento, setAlojamiento] = useState();
@@ -26,9 +27,13 @@ export const ReservaElement = ({ reserva }) => {
         }
         alt="Foto portada alojamiento"
       />
-      <p>
-        {alojamiento ? alojamiento.descripcion : "Descripción no disponible"}
-      </p>
+      <p>{reserva ? reserva.fechaInicio : "Fecha no encontrada"}</p>
+      <Link
+        to={`/reserva/${reserva.id}`}
+        style={{ textDecoration: "none", color: "green" }}
+      >
+        Detalles
+      </Link>
     </>
   );
 };
