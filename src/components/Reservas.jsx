@@ -5,7 +5,7 @@ import { ReservaElement } from "./ReservaElement";
 
 export function Reservas() {
   const { getReservas } = useFirestore();
-  const [reservas, setReservas] = useState();
+  const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
   const userEmail = useContext(AuthContext);
 
@@ -26,9 +26,9 @@ export function Reservas() {
   return (
     <div>
       <ul>
-        {reservas.map((it) => (
-          <li key={it.id}>
-            {<ReservaElement reservas={it} />}
+        {reservas.map((reserva) => (
+          <li key={reserva.id}>
+            <ReservaElement reserva={reserva} />
           </li>
         ))}
       </ul>

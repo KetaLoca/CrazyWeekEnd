@@ -6,23 +6,24 @@ export const ReservaElement = ({ reserva }) => {
   const { getAlojamiento } = useFirestore();
 
   useEffect(() => {
-    if (reserva) {
-      getAlojamiento(reserva.idalojamiento)
-        .then((result) => {
-          setAlojamiento(result);
-          console.log(result);
-        })
-        .catch((e) => {
-          alert("Error recuperando el alojamiento");
-        });
-    }
+    getAlojamiento(reserva.idalojamiento)
+      .then((result) => {
+        setAlojamiento(result);
+      })
+      .catch((e) => {
+        console.log("Error recuperando el alojamiento");
+      });
   }, [reserva]);
 
   return (
     <>
       <h1>{alojamiento ? alojamiento.nombre : "Nombre no disponible"}</h1>
       <img
-        src={alojamiento ? alojamiento.imgURL : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"}
+        src={
+          alojamiento
+            ? alojamiento.imgURL
+            : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
+        }
         alt="Foto portada alojamiento"
       />
       <p>
