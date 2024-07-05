@@ -7,6 +7,7 @@ export function DetallesReserva() {
   const { getReserva, getAlojamiento } = useFirestore();
   const [alojamiento, setAlojamiento] = useState();
   const [reserva, setReserva] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getReserva(id)
@@ -18,6 +19,7 @@ export function DetallesReserva() {
           .then((result) => {
             setAlojamiento(result);
             console.log(result);
+            setLoading(false);
           })
           .catch((e) => {
             alert("Error recuperando el alojamiento");
@@ -26,7 +28,26 @@ export function DetallesReserva() {
       .catch((e) => {
         alert("Error recuperando la reserva");
       });
-  }, []);
+  }, [id]);
 
-  return <h1>Probando</h1>;
+  if (loading) return <h1>Cargando</h1>;
+
+  return (
+    <>
+      {alojamiento && reserva ? (
+        <div className="reservadetalles">
+          <h1>{alojamiento.nombre}</h1>
+          <strong>
+            Fecha de inicio: {reserva.fechaInicio} || Fecha de fin:{" "}
+            {reserva.fechaFin}
+          </strong>
+          <img src={alojamiento.imgURL} />
+          <h3>{alojamiento.descripcion}</h3>
+          <button>Eliminar reserva</button>
+        </div>
+      ) : (
+        <h1>No hay datos</h1>
+      )}
+    </>
+  );
 }
