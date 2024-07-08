@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export function Alojamientos() {
   const { getAlojamientos } = useFirestore();
+  const [alojamientosList, setAlojamientosList] = useState();
   const [filteredList, setFilteredList] = useState();
   const [inputQuery, setInputQuery] = useState("");
   const [sort, setSort] = useState(false);
@@ -14,6 +15,7 @@ export function Alojamientos() {
   useEffect(() => {
     getAlojamientos()
       .then((alojamientos) => {
+        setAlojamientosList(alojamientos);
         setFilteredList(alojamientos);
         setLoading(false);
       })
@@ -25,7 +27,7 @@ export function Alojamientos() {
   function handleSubmit(e) {
     e.preventDefault();
     setFilteredList(
-      filteredList.filter(
+      alojamientosList.filter(
         (alojamiento) =>
           alojamiento.nombre.toLowerCase().includes(inputQuery.toLowerCase()) ||
           alojamiento.descripcion
@@ -42,6 +44,9 @@ export function Alojamientos() {
 
   function handleSort() {
     setSort(!sort);
+    setFilteredList(
+      alojamientosList.filter((alojamiento) => alojamiento.animales == sort)
+    );
   }
 
   if (loading) return <h1>Cargando</h1>;
