@@ -8,7 +8,7 @@ import {
   getDoc,
   deleteDoc,
   where,
-  query
+  query,
 } from "firebase/firestore";
 import { Alojamiento, Reserva, User } from "../models/classes";
 
@@ -111,6 +111,17 @@ export const useFirestore = () => {
     return reservas;
   };
 
+  const getReservasByAlojamiento = async (id) => {
+    const collectionRef = collection(db, "reservas");
+    const consulta = query(collectionRef, where("idalojamiento", "==", id));
+    const docSnap = await getDocs(consulta);
+    const reservas = docSnap.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return reservas;
+  };
+
   return {
     getAlojamiento,
     getAlojamientos,
@@ -120,5 +131,6 @@ export const useFirestore = () => {
     getReserva,
     deleteReserva,
     getReservas,
+    getReservasByAlojamiento,
   };
 };
