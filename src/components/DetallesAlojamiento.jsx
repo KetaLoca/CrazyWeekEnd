@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
-  const { userEmail } = useContext(AuthContext);
+  const { userEmail, isLogged } = useContext(AuthContext);
   const { getAlojamiento, addReserva, getReservasByAlojamiento } =
     useFirestore();
   const [alojamiento, setAlojamiento] = useState(null);
@@ -58,6 +58,10 @@ export function DetallesAlojamiento() {
     e.preventDefault();
     if (!startDate || !endDate) {
       alert("Debe seleccionar ambas fechas antes de reservar");
+      return;
+    }
+    if (!isLogged) {
+      alert("Debe iniciar sesión antes de reservar ningún alojamiento");
       return;
     }
     const formattedStartDate = format(startDate, "yyyy-MM-dd");
