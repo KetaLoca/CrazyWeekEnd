@@ -3,15 +3,16 @@ import { useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
+import { v4 as uuidv4 } from "uuid";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
-  const { userEmail } = useContext(AuthContext)
-  const { getAlojamiento, addReserva } = useFirestore()
+  const { userEmail } = useContext(AuthContext);
+  const { getAlojamiento, addReserva } = useFirestore();
   const [alojamiento, setAlojamiento] = useState(null);
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
@@ -35,16 +36,26 @@ export function DetallesAlojamiento() {
       alert("Debe seleccionar ambas fechas antes de reservar");
       return;
     }
-    const formattedStartDate = format(startDate, 'yyyy-MM-dd');
-    const formattedEndDate = format(endDate, 'yyyy-MM-dd');
+    const formattedStartDate = format(startDate, "yyyy-MM-dd");
+    const formattedEndDate = format(endDate, "yyyy-MM-dd");
 
-    const reserva = new Reserva(userEmail, alojamiento.id, formattedStartDate, formattedEndDate)
+    const reserva = new Reserva(
+      uuidv4(),
+      userEmail,
+      alojamiento.id,
+      formattedStartDate,
+      formattedEndDate
+    );
 
-    addReserva(reserva).then(() => { alert("Reserva añadida correctamente") }).catch((e) => {
-      alert("Error añadiendo reserva")
-      console.log(e)
-    })
-    e.target.blur()
+    addReserva(reserva)
+      .then(() => {
+        alert("Reserva añadida correctamente");
+      })
+      .catch((e) => {
+        alert("Error añadiendo reserva");
+        console.log(e);
+      });
+    e.target.blur();
   }
 
   const CustomInput = React.forwardRef(({ value, onClick, onChange }, ref) => (
@@ -76,9 +87,13 @@ export function DetallesAlojamiento() {
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="yyyy-MM-dd"
-            customInput={<CustomInput
-              onChange={(e) => { setStartDate(e.target.value) }}
-            />}
+            customInput={
+              <CustomInput
+                onChange={(e) => {
+                  setStartDate(e.target.value);
+                }}
+              />
+            }
             minDate={today}
             selectsStart
             startDate={startDate}
@@ -94,9 +109,13 @@ export function DetallesAlojamiento() {
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="yyyy-MM-dd"
-            customInput={<CustomInput
-              onChange={(e) => { setEndDate(e.target.value) }}
-            />}
+            customInput={
+              <CustomInput
+                onChange={(e) => {
+                  setEndDate(e.target.value);
+                }}
+              />
+            }
             minDate={startDate || today}
             selectsEnd
             startDate={startDate}

@@ -14,12 +14,10 @@ export function AuthContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (userEmail) {
+    if (isLogged) {
       localStorage.setItem("user", JSON.stringify(userEmail));
-    } else {
-      localStorage.removeItem("user");
-    }
-  }, [userEmail]);
+    } 
+  }, [isLogged]);
 
   return (
     <AuthContext.Provider
