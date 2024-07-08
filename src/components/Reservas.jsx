@@ -19,7 +19,7 @@ export function Reservas() {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [userEmail]);
 
   if (loading) return <h1>Cargando</h1>;
 

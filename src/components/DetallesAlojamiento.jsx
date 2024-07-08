@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
@@ -12,11 +12,14 @@ import { v4 as uuidv4 } from "uuid";
 export function DetallesAlojamiento() {
   const { id } = useParams();
   const { userEmail } = useContext(AuthContext);
-  const { getAlojamiento, addReserva } = useFirestore();
+  const { getAlojamiento, addReserva, getReservasByAlojamiento } =
+    useFirestore();
   const [alojamiento, setAlojamiento] = useState(null);
+  const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [disabledDates, setDisabledDates] = useState();
   const navigate = useNavigate();
   const today = new Date();
 
@@ -29,7 +32,39 @@ export function DetallesAlojamiento() {
       .catch((e) => {
         alert("Error recuperando el alojamiento");
       });
+
+    getReservasByAlojamiento(id)
+      .then((resultList) => {
+        setReservas(resultList);
+        console.log(resultList);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [id]);
+
+  useEffect(() => {
+    const bookerIntervals = getDateIntervals(reservas);
+    setDisabledDates(getDisabledDates(bookerIntervals));
+  }, [reservas]);
+
+  const getDateIntervals = (reservas) => {
+    return reservas.map((reserva) => ({
+      start: new Date(reserva.fechaInicio),
+      end: new Date(reserva.fechaFin),
+    }));
+  };
+
+  const getDisabledDates = (intervals) => {
+    const dates = [];
+    intervals.forEach((interval) => {
+      let currentDate = interval.start;
+      while (currentDate <= interval.end) {
+        dates.push(new Date(currentDate));
+        currentDate = addDays(currentDate, 1);
+      }
+    });
+  };
 
   function handleReservar(e) {
     e.preventDefault();
@@ -88,7 +123,7 @@ export function DetallesAlojamiento() {
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="dd-MM-yyyy"
             customInput={
               <CustomInput
                 onChange={(e) => {
@@ -101,6 +136,7 @@ export function DetallesAlojamiento() {
             selectsStart
             startDate={startDate}
             endDate={endDate}
+            excludeDates={disabledDates}
           />
         </label>
       </div>
@@ -111,7 +147,7 @@ export function DetallesAlojamiento() {
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="dd-MM-yyyy"
             customInput={
               <CustomInput
                 onChange={(e) => {
@@ -123,6 +159,7 @@ export function DetallesAlojamiento() {
             selectsEnd
             startDate={startDate}
             endDate={endDate}
+            excludeDates={disabledDates}
           />
         </label>
       </div>
