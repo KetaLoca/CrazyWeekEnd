@@ -6,9 +6,9 @@ import {
   setDoc,
   doc,
   getDoc,
-  query,
-  where,
   deleteDoc,
+  where,
+  query
 } from "firebase/firestore";
 import { Alojamiento, Reserva, User } from "../models/classes";
 
@@ -102,7 +102,8 @@ export const useFirestore = () => {
 
   const getReservas = async (email) => {
     const collectionRef = collection(db, "reservas");
-    const docSnap = await getDocs(collectionRef);
+    const consulta = query(collectionRef, where("emailuser", "==", email));
+    const docSnap = await getDocs(consulta);
     const reservas = docSnap.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),

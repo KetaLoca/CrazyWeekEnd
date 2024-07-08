@@ -7,7 +7,7 @@ export function Reservas() {
   const { getReservas } = useFirestore();
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userEmail = useContext(AuthContext);
+  const { userEmail } = useContext(AuthContext);
 
   useEffect(() => {
     getReservas(userEmail)
