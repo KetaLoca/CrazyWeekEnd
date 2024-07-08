@@ -44,9 +44,12 @@ export function Alojamientos() {
 
   function handleSort() {
     setSort(!sort);
-    setFilteredList(
-      alojamientosList.filter((alojamiento) => alojamiento.animales == sort)
-    );
+    
+    if (!sort) {
+      setFilteredList(
+        filteredList.filter((alojamiento) => alojamiento.animales == sort)
+      );
+    }
   }
 
   if (loading) return <h1>Cargando</h1>;
