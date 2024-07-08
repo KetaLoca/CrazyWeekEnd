@@ -74,7 +74,7 @@ export function Alojamientos() {
       <ul className="alojamientos">
         {filteredList.length > 0 ? (
           filteredList.map((alojamiento) => (
-            <li key={alojamiento.id}>
+            <li className="alojamientos-item" key={alojamiento.id}>
               <img src={alojamiento.imgURL} alt="Imagen casa rural" />
               <h2>{alojamiento.nombre}</h2>
               <p>{alojamiento.descripcion}</p>

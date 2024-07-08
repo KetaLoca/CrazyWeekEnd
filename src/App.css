@@ -52,6 +52,10 @@ img {
   margin: 0 auto;
 }
 
+body {
+  background-color: #460a589c;
+}
+
 .link {
   display: inline-block;
   padding: 10px 20px; /* Ajusta el padding según sea necesario */
@@ -70,20 +74,18 @@ img {
 }
 
 .authcontainer {
-  align-self: center;
   position: relative;
+  max-width: 400px;
   width: 100%;
   text-align: center;
   background-color: #1a1a1a;
   color: white;
   padding: 20px;
   border-radius: 10px;
-  margin: auto;
-  margin-top: 50px;
 }
 
 #loginform {
-  margin: auto;
+  margin: 0 auto;
   position: relative;
   display: block;
   width: calc(100% - 20px);
@@ -184,6 +186,19 @@ strong {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   list-style-type: none;
+}
+
+.alojamientos-item {
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.alojamientos-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .perfilform {
