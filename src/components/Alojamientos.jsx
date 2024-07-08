@@ -25,7 +25,7 @@ export function Alojamientos() {
   function handleSubmit(e) {
     e.preventDefault();
     setFilteredList(
-      alojamientos.filter(
+      filteredList.filter(
         (alojamiento) =>
           alojamiento.nombre.toLowerCase().includes(inputQuery.toLowerCase()) ||
           alojamiento.descripcion
