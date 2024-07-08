@@ -98,6 +98,7 @@ export function DetallesAlojamiento() {
               />
             }
             minDate={today}
+            maxDate={endDate}
             selectsStart
             startDate={startDate}
             endDate={endDate}
