@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
+import { format } from "date-fns";
 
 export function DetallesReserva() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ export function DetallesReserva() {
   const [reserva, setReserva] = useState();
   const [loading, setLoading] = useState(true);
   const { deleteReserva } = useFirestore();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     getReserva(id)
@@ -35,7 +36,7 @@ export function DetallesReserva() {
     deleteReserva(id)
       .then(() => {
         alert("Reserva eliminada correctamente");
-        navigate("/home")
+        navigate("/home");
       })
       .catch((e) => {
         alert("Ha ocurrido un error eliminando el usuario");
@@ -49,11 +50,11 @@ export function DetallesReserva() {
       {alojamiento && reserva ? (
         <div className="reservadetalles">
           <h1>{alojamiento.nombre}</h1>
-          <strong>
-            Fecha de inicio: {reserva.fechaInicio} || Fecha de fin:{" "}
-            {reserva.fechaFin}
-          </strong>
           <img src={alojamiento.imgURL} />
+          <strong>
+            {format(reserva.fechaInicio, "dd-MM-yyyy")} ||{" "}
+            {format(reserva.fechaFin, "dd-MM-yyyy")}
+          </strong>
           <h3>{alojamiento.descripcion}</h3>
           <button onClick={handleDelete}>Eliminar reserva</button>
         </div>

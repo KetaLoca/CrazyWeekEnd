@@ -277,6 +277,9 @@ strong {
 }
 
 .alojamiento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 650px;
   margin: 0 auto;
@@ -318,6 +321,12 @@ strong {
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.reservadetalles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .reservadetalles button {
