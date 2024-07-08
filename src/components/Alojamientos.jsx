@@ -26,15 +26,32 @@ export function Alojamientos() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setFilteredList(
-      alojamientosList.filter(
-        (alojamiento) =>
-          alojamiento.nombre.toLowerCase().includes(inputQuery.toLowerCase()) ||
-          alojamiento.descripcion
-            .toLowerCase()
-            .includes(inputQuery.toLowerCase())
-      )
-    );
+    if (sort) {
+      setFilteredList(
+        alojamientosList.filter(
+          (alojamiento) =>
+            (alojamiento.nombre
+              .toLowerCase()
+              .includes(inputQuery.toLowerCase()) ||
+              alojamiento.descripcion
+                .toLowerCase()
+                .includes(inputQuery.toLowerCase())) &&
+            alojamiento.animales == sort
+        )
+      );
+    } else {
+      setFilteredList(
+        alojamientosList.filter(
+          (alojamiento) =>
+            alojamiento.nombre
+              .toLowerCase()
+              .includes(inputQuery.toLowerCase()) ||
+            alojamiento.descripcion
+              .toLowerCase()
+              .includes(inputQuery.toLowerCase())
+        )
+      );
+    }
     searchBtnRef.current.blur();
   }
 
@@ -44,7 +61,7 @@ export function Alojamientos() {
 
   function handleSort() {
     setSort(!sort);
-    
+
     if (!sort) {
       setFilteredList(
         filteredList.filter((alojamiento) => alojamiento.animales == sort)
