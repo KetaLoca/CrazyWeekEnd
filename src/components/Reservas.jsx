@@ -26,9 +26,9 @@ export function Reservas() {
   return (
     <div>
       {reservas.length > 0 ? (
-        <ul>
+        <ul className="reservas">
           {reservas.map((reserva) => (
-            <li key={reserva.id}>
+            <li className="reservas-item" key={reserva.id}>
               <ReservaElement reserva={reserva} />
             </li>
           ))}

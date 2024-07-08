@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
 import { v4 as uuidv4 } from "uuid";
+import { Navigate } from "react-router-dom";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
@@ -17,6 +18,7 @@ export function DetallesAlojamiento() {
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const navigate = useNavigate();
   const today = new Date();
 
   useEffect(() => {
@@ -50,6 +52,7 @@ export function DetallesAlojamiento() {
     addReserva(reserva)
       .then(() => {
         alert("Reserva añadida correctamente");
+        navigate("/home");
       })
       .catch((e) => {
         alert("Error añadiendo reserva");

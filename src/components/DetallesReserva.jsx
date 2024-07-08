@@ -35,7 +35,7 @@ export function DetallesReserva() {
     deleteReserva(id)
       .then(() => {
         alert("Reserva eliminada correctamente");
-        navigate("/reservations")
+        navigate("/home")
       })
       .catch((e) => {
         alert("Ha ocurrido un error eliminando el usuario");

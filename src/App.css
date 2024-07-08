@@ -300,6 +300,26 @@ strong {
   background-color: #0056b3;
 }
 
+.reservas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.reservas-item {
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.reservas-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .reservadetalles button {
   display: inline-block; /* Make the button an inline-block element */
   padding: 10px 20px; /* Add padding for spacing */
