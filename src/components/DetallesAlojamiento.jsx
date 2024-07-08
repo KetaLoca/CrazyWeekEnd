@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import { format, addDays } from "date-fns";
+import { format, subDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
@@ -19,7 +19,7 @@ export function DetallesAlojamiento() {
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [disabledDates, setDisabledDates] = useState();
+  const [disabledDays, setDisabledDays] = useState();
   const navigate = useNavigate();
   const today = new Date();
 
@@ -36,7 +36,6 @@ export function DetallesAlojamiento() {
     getReservasByAlojamiento(id)
       .then((resultList) => {
         setReservas(resultList);
-        console.log(resultList);
       })
       .catch((e) => {
         console.log(e);
@@ -45,25 +44,14 @@ export function DetallesAlojamiento() {
 
   useEffect(() => {
     const bookerIntervals = getDateIntervals(reservas);
-    setDisabledDates(getDisabledDates(bookerIntervals));
+    setDisabledDays(bookerIntervals);
   }, [reservas]);
 
   const getDateIntervals = (reservas) => {
     return reservas.map((reserva) => ({
-      start: new Date(reserva.fechaInicio),
+      start: subDays(new Date(reserva.fechaInicio), 1),
       end: new Date(reserva.fechaFin),
     }));
-  };
-
-  const getDisabledDates = (intervals) => {
-    const dates = [];
-    intervals.forEach((interval) => {
-      let currentDate = interval.start;
-      while (currentDate <= interval.end) {
-        dates.push(new Date(currentDate));
-        currentDate = addDays(currentDate, 1);
-      }
-    });
   };
 
   function handleReservar(e) {
@@ -136,7 +124,7 @@ export function DetallesAlojamiento() {
             selectsStart
             startDate={startDate}
             endDate={endDate}
-            excludeDates={disabledDates}
+            excludeDateIntervals={disabledDays}
           />
         </label>
       </div>
@@ -159,7 +147,7 @@ export function DetallesAlojamiento() {
             selectsEnd
             startDate={startDate}
             endDate={endDate}
-            excludeDates={disabledDates}
+            excludeDateIntervals={disabledDays}
           />
         </label>
       </div>
