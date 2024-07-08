@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
 import { v4 as uuidv4 } from "uuid";
-import { Navigate } from "react-router-dom";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
