@@ -9,11 +9,15 @@ export function HomePage() {
   const navigate = useNavigate();
 
   function handleBuscarAlojamientos() {
-    navigate("/search");
+    navigate("/alojamientos");
   }
 
   function handleMisReservas() {
     navigate("/reservations");
+  }
+
+  function handleCrearAlojamiento() {
+    navigate("/crearAlojamiento")
   }
 
   function handleAccount() {
@@ -46,6 +50,7 @@ export function HomePage() {
       <div className="switchbuttons">
         <button onClick={handleBuscarAlojamientos}>Buscar alojamientos</button>
         <button onClick={handleMisReservas}>Consultar mis reservas</button>
+        <button onClick={handleCrearAlojamiento}>Añadir alojamiento</button>
         <button onClick={handleAccount}>Mi cuenta</button>
         {isLogged ? (
           <button onClick={handleLogOut}>Cerrar sesión</button>
