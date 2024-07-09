@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +24,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -52,21 +55,22 @@ img {
   border-radius: 10px;
 }
 
-body {
-  width: 100%;
-  height: 100vh;
-  background-color: #460a589c;
-}
-
 .link {
   display: inline-block;
-  padding: 10px 20px; /* Ajusta el padding según sea necesario */
-  font-size: 20px; /* Ajusta el tamaño de la fuente */
-  text-decoration: none; /* Elimina el subrayado predeterminado */
-  color: #ffffff; /* Color del texto */
-  background-color: #3f079b; /* Color de fondo */
-  border-radius: 5px; /* Añade esquinas redondeadas */
-  border: 2px solid #e67bcb; /* Añade borde */
+  padding: 10px 20px;
+  /* Ajusta el padding según sea necesario */
+  font-size: 20px;
+  /* Ajusta el tamaño de la fuente */
+  text-decoration: none;
+  /* Elimina el subrayado predeterminado */
+  color: #ffffff;
+  /* Color del texto */
+  background-color: #3f079b;
+  /* Color de fondo */
+  border-radius: 5px;
+  /* Añade esquinas redondeadas */
+  border: 2px solid #e67bcb;
+  /* Añade borde */
   transition: all 0.3s ease;
   margin-top: 10px;
 }
@@ -161,7 +165,8 @@ strong {
 }
 
 .switchbuttons button {
-  background-color: #4caf50; /* Verde */
+  background-color: #4caf50;
+  /* Verde */
   width: 60%;
   border: none;
   color: white;
@@ -170,17 +175,20 @@ strong {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 0; /* Elimina el margen horizontal */
+  margin: 4px 0;
+  /* Elimina el margen horizontal */
   cursor: pointer;
 }
 
 .switchbuttons button:hover {
-  background-color: #3e8e41; /* Verde más oscuro */
+  background-color: #3e8e41;
+  /* Verde más oscuro */
 }
 
 /* Eliminar espacio blanco sobrante */
-.homeheader + .switchbuttons {
-  margin-top: 0; /* Elimina el margen superior del contenedor de botones */
+.homeheader+.switchbuttons {
+  margin-top: 0;
+  /* Elimina el margen superior del contenedor de botones */
 }
 
 .alojamientos {
@@ -204,49 +212,77 @@ strong {
 }
 
 .perfilform {
-  display: flex; /* Layout the form elements in a row */
-  flex-direction: column; /* Arrange elements vertically */
-  width: 300px; /* Adjust width as needed */
-  margin: 20px auto; /* Add margin for spacing */
-  padding: 20px; /* Add padding for spacing */
-  border: 1px solid #ccc; /* Add a subtle border */
-  border-radius: 5px; /* Add rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  display: flex;
+  /* Layout the form elements in a row */
+  flex-direction: column;
+  /* Arrange elements vertically */
+  width: 300px;
+  /* Adjust width as needed */
+  margin: 20px auto;
+  /* Add margin for spacing */
+  padding: 20px;
+  /* Add padding for spacing */
+  border: 1px solid #ccc;
+  /* Add a subtle border */
+  border-radius: 5px;
+  /* Add rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Add a subtle shadow */
 }
 
 .perfilform label {
-  display: block; /* Make labels block-level */
-  margin-bottom: 5px; /* Add spacing between label and input */
-  font-weight: bold; /* Make labels bolder */
+  display: block;
+  /* Make labels block-level */
+  margin-bottom: 5px;
+  /* Add spacing between label and input */
+  font-weight: bold;
+  /* Make labels bolder */
 }
 
 .perfilform input[type="text"] {
-  width: 100%; /* Make inputs span the full width */
-  padding: 10px; /* Add padding for spacing */
-  border: 1px solid #ccc; /* Add a subtle border */
-  border-radius: 3px; /* Add rounded corners */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  width: 100%;
+  /* Make inputs span the full width */
+  padding: 10px;
+  /* Add padding for spacing */
+  border: 1px solid #ccc;
+  /* Add a subtle border */
+  border-radius: 3px;
+  /* Add rounded corners */
+  box-sizing: border-box;
+  /* Include padding and border in width calculation */
 }
 
 .perfilform input[type="text"]:focus {
-  outline: none; /* Remove default outline */
-  border-color: #007bff; /* Change border color on focus */
+  outline: none;
+  /* Remove default outline */
+  border-color: #007bff;
+  /* Change border color on focus */
 }
 
 .perfilform button[type="submit"] {
-  display: inline-block; /* Make the button an inline-block element */
-  padding: 10px 20px; /* Add padding for spacing */
-  margin-top: 10px; /* Add margin above the button */
-  background-color: #007bff; /* Set background color to blue */
-  color: #fff; /* Set text color to white */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Add rounded corners */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s ease; /* Add a smooth hover effect */
+  display: inline-block;
+  /* Make the button an inline-block element */
+  padding: 10px 20px;
+  /* Add padding for spacing */
+  margin-top: 10px;
+  /* Add margin above the button */
+  background-color: #007bff;
+  /* Set background color to blue */
+  color: #fff;
+  /* Set text color to white */
+  border: none;
+  /* Remove default border */
+  border-radius: 5px;
+  /* Add rounded corners */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease;
+  /* Add a smooth hover effect */
 }
 
 .perfilform button[type="submit"]:hover {
-  background-color: #0056b3; /* Change background color on hover */
+  background-color: #0056b3;
+  /* Change background color on hover */
 }
 
 .accountimg {
@@ -332,17 +368,27 @@ strong {
 }
 
 .reservadetalles button {
-  display: inline-block; /* Make the button an inline-block element */
-  padding: 10px 20px; /* Add padding for spacing */
-  margin-top: 10px; /* Add margin above the button */
-  background-color: #007bff; /* Set background color to blue */
-  color: #fff; /* Set text color to white */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Add rounded corners */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s ease; /* Add a smooth hover effect */
+  display: inline-block;
+  /* Make the button an inline-block element */
+  padding: 10px 20px;
+  /* Add padding for spacing */
+  margin-top: 10px;
+  /* Add margin above the button */
+  background-color: #007bff;
+  /* Set background color to blue */
+  color: #fff;
+  /* Set text color to white */
+  border: none;
+  /* Remove default border */
+  border-radius: 5px;
+  /* Add rounded corners */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease;
+  /* Add a smooth hover effect */
 }
 
 .reservadetalles button:hover {
-  background-color: #0056b3; /* Change background color on hover */
+  background-color: #0056b3;
+  /* Change background color on hover */
 }
