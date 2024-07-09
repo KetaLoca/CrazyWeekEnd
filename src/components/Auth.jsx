@@ -17,8 +17,6 @@ export const Auth = () => {
   const signUpButtonRef = useRef(null);
   const navigate = useNavigate();
 
-  signOut(auth); //forzar el cierre de sesión para evitar problemas
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setError("");
