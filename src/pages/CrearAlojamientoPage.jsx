@@ -19,7 +19,8 @@ export const CrearAlojamientoPage = () => {
                 <input type="text" placeholder="Introduce el nombre del alojamiento" />
                 <label>Descripción:</label>
                 <input type="text" placeholder="Redacta una descripción para tu alojamiento" />
-                <label>Se admiten animales?<input type="checkbox" onChange={handleSort} checked={sort} /></label>
+                <label>Se admiten animales?</label>
+                <input type="checkbox" onChange={handleSort} checked={sort} />
                 <button ref={submitRef} type="submit">Añadir alojamiento</button>
             </form>
         </div>
