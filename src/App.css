@@ -392,3 +392,39 @@ strong {
   background-color: #0056b3;
   /* Change background color on hover */
 }
+
+.carousel-container {
+  width: 80%;
+  /* Ajusta el ancho según sea necesario */
+  margin: 0 auto;
+  /* Centra el carrusel */
+  position: relative;
+}
+
+.carousel-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+}
+
+.slick-prev,
+.slick-next {
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.slick-prev {
+  left: 10px;
+  /* Ajusta según sea necesario */
+}
+
+.slick-next {
+  right: 10px;
+  /* Ajusta según sea necesario */
+}

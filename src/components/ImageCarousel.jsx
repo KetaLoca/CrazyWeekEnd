@@ -10,17 +10,20 @@ const ImageCarousel = ({ images }) => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        arrows: true,
     };
 
     return (
-        <Slider {...settings}>
-            {images.map((image, index) => (
-                <div key={index}>
-                    <img src={image} alt={`Slide ${index}`} />
-                </div>
-            ))}
-        </Slider>
+        <div className="carousel-container">
+            <Slider {...settings}>
+                {images.map((image, index) => (
+                    <div className="carousel-slide" key={index}>
+                        <img src={image} alt={`Slide ${index}`} className="carousel-image" />
+                    </div>
+                ))}
+            </Slider>
+        </div>
     );
 }
 
