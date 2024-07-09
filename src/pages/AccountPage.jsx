@@ -5,7 +5,7 @@ import { User } from "../models/classes";
 import { useFirestore } from "../hooks/useFirestore";
 
 export function AccountPage() {
-  const { userEmail, isLogged } = useContext(AuthContext);
+  const { userEmail } = useContext(AuthContext);
   const [nombre, setNombre] = useState("");
   const [apellidos, setApellidos] = useState("");
   const [telefono, setTelefono] = useState("");
@@ -13,13 +13,6 @@ export function AccountPage() {
   const guardarButtonRef = useRef(null);
   const navigate = useNavigate();
   const { addUser, getUser } = useFirestore();
-
-  // useEffect(() => {
-  //   if (!isLogged) {
-  //     alert("No puede acceder a esta página sin haber iniciado sesión");
-  //     navigate("/auth");
-  //   }
-  // }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
