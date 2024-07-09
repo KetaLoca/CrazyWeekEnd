@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 export const CrearAlojamientoPage = () => {
     const [sort, setSort] = useState(false)
+    const submitRef = useRef(null)
 
-    function handleSubmit() { }
+    function handleSubmit(e) {
+        e.preventDefault()
+        submitRef.current.blur()
+    }
 
     function handleSort() { setSort(!sort) }
 
@@ -16,7 +20,7 @@ export const CrearAlojamientoPage = () => {
                 <label>Descripción:</label>
                 <input type="text" placeholder="Redacta una descripción para tu alojamiento" />
                 <label>Se admiten animales?<input type="checkbox" onChange={handleSort} checked={sort} /></label>
-                <button type="submit">Añadir alojamiento</button>
+                <button ref={submitRef} type="submit">Añadir alojamiento</button>
             </form>
         </div>
     )
