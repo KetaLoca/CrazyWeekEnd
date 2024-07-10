@@ -446,6 +446,7 @@ strong {
 
 .crear-alojamiento-form input[type="checkbox"] {
   margin-right: 10px;
+  margin-bottom: 15px;
 }
 
 .crear-alojamiento-form button {
