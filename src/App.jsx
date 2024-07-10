@@ -11,7 +11,7 @@ import { ReservaPage } from "./pages/ReservaPage";
 import { AlojamientosPage } from "./pages/AlojamientosPage";
 import { AlojamientoPage } from "./pages/AlojamientoPage";
 import { CrearAlojamientoPage } from "./pages/CrearAlojamientoPage";
-import { GestionAlojamientos } from "./pages/GestionAlojamientos"
+import { GestionAlojamientos } from "./pages/GestionAlojamientos";
 
 function App() {
   return (

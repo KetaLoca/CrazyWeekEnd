@@ -25,6 +25,7 @@ export const useFirestore = () => {
   async function addAlojamiento(alojamiento) {
     await setDoc(doc(db, "alojamientos", alojamiento.id), {
       id: alojamiento.id,
+      emailuser: alojamiento.emailUser,
       nombre: alojamiento.nombre,
       descripcion: alojamiento.descripcion,
       animales: alojamiento.animales,
@@ -39,6 +40,7 @@ export const useFirestore = () => {
       const data = docSnap.data();
       const alojamiento = new Alojamiento(
         data.id,
+        data.emailUser,
         data.nombre,
         data.descripcion,
         data.imgURL,
@@ -48,6 +50,17 @@ export const useFirestore = () => {
     } else {
       return null;
     }
+  }
+
+  async function getAlojamientoByEmail(email) {
+    const collectionRef = collection(db, "alojamientos")
+    const consulta = query(collectionRef, where("emailuser", "==", email))
+    const snap = await getDocs(consulta)
+    const alojamientos = snap.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    return alojamientos
   }
 
   async function addUser(user) {

@@ -2,6 +2,7 @@
 export class Alojamiento {
   constructor(id, nombre, descripcion, imgURL, animales) {
     this.id = id;
+    this.emailUser = emailUser;
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.imgURL = imgURL;
