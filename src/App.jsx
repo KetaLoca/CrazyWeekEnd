@@ -11,6 +11,7 @@ import { ReservaPage } from "./pages/ReservaPage";
 import { AlojamientosPage } from "./pages/AlojamientosPage";
 import { AlojamientoPage } from "./pages/AlojamientoPage";
 import { CrearAlojamientoPage } from "./pages/CrearAlojamientoPage";
+import { GestionarAlojamientos } from "./pages/GestionAlojamientos"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/reservations" element={<ReservasPage />} />
         <Route path="/reservation/:id" element={<ReservaPage />} />
         <Route path="/crearAlojamiento" element={<CrearAlojamientoPage />} />
+        <Route path="gestionarAlojamientos" element={<GestionarAlojamientos />} />
         <Route path="/account" element={<AccountPage />} />
       </Routes>
     </Router>

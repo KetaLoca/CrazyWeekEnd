@@ -19,7 +19,7 @@ export const CrearAlojamientoPage = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setError("");
-        }, 2400);
+        }, 3000);
         return () => clearTimeout(timer);
     }, [error])
 
