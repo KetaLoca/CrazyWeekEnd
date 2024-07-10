@@ -1,21 +1,35 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { storage } from "../firebaseConfig";
 import { Alojamiento } from "../models/classes";
 import { useFirestore } from "../hooks/useFirestore";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 export const CrearAlojamientoPage = () => {
     const [nombre, setNombre] = useState("")
     const [descripción, setDescripcion] = useState("")
     const [sort, setSort] = useState(false)
-    const [files, setFiles] = useState()
+    const [files, setFiles] = useState([])
+    const [error, setError] = useState("")
     const { addAlojamiento } = useFirestore()
+    const navigate = useNavigate()
     const submitRef = useRef(null)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setError("");
+        }, 2400);
+        return () => clearTimeout(timer);
+    }, [error])
 
     async function handleSubmit(e) {
         e.preventDefault()
-        submitRef.current.blur()
+
+        if (nombre == "" || descripción == "" || files.length == 0) {
+            setError("Debes rellenar todos los campos para poder crear el alojamiento")
+            return
+        }
 
         try {
             const id = uuid()
@@ -31,12 +45,18 @@ export const CrearAlojamientoPage = () => {
             console.log(imageURLs)
 
             const alojamiento = new Alojamiento(id, nombre, descripción, imageURLs, sort)
-            addAlojamiento(alojamiento).then(() => { alert("Alojamiento añadido correctamente") }).catch((e) => {
+            addAlojamiento(alojamiento).then(() => {
+                alert("Alojamiento añadido correctamente")
+                navigate("/home")
+            }).catch((e) => {
                 console.error(e)
-                alert("Error con firestore")
+                setError("Error con firestore")
             })
 
-        } catch (e) { console.error("Error añadiendo alojamiento", e) }
+        } catch (e) {
+            console.error("Error añadiendo alojamiento", e)
+            setError("Error añadiendo el alojamiento, vuelva a intentarlo")
+        }
     }
 
     function handleSort() { setSort(!sort) }
@@ -56,6 +76,7 @@ export const CrearAlojamientoPage = () => {
                 <label>Añade las fotos correspondientes</label>
                 <input type="file" multiple onChange={handleFilesChange} />
                 <button ref={submitRef} type="submit">Añadir alojamiento</button>
+                <p className="error">{error}</p>
             </form>
         </div>
     )
