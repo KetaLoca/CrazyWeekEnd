@@ -22,6 +22,16 @@ export const useFirestore = () => {
     return alojamientosList;
   }
 
+  async function addAlojamiento(alojamiento) {
+    await setDoc(doc(db, "alojamientos", alojamiento.id), {
+      id: alojamiento.id,
+      nombre: alojamiento.nombre,
+      descripcion: alojamiento.descripcion,
+      animales: alojamiento.animales,
+      imgURL: alojamiento.imgURL
+    })
+  }
+
   async function getAlojamiento(id) {
     const docRef = doc(db, "alojamientos", id);
     const docSnap = await getDoc(docRef);
@@ -122,6 +132,7 @@ export const useFirestore = () => {
   };
 
   return {
+    addAlojamiento,
     getAlojamiento,
     getAlojamientos,
     addUser,
