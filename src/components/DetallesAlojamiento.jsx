@@ -31,6 +31,7 @@ export function DetallesAlojamiento() {
       })
       .catch((e) => {
         alert("Error recuperando el alojamiento");
+        console.error(e)
       });
 
     getReservasByAlojamiento(id)

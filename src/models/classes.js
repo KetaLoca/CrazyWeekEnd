@@ -1,6 +1,6 @@
 
 export class Alojamiento {
-  constructor(id, nombre, descripcion, imgURL, animales) {
+  constructor(id, emailUser, nombre, descripcion, imgURL, animales) {
     this.id = id;
     this.emailUser = emailUser;
     this.nombre = nombre;
