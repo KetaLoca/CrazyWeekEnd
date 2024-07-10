@@ -21,7 +21,7 @@ export const CrearAlojamientoPage = () => {
             const id = uuid()
 
             const uploadPromises = files.map(async (file, index) => {
-                const storageRef = ref(storage, `${id}/imagen${index}`)
+                const storageRef = ref(storage, `${id}/img${index}`)
                 const snapShot = await uploadBytes(storageRef, file)
                 const dowloadURL = await getDownloadURL(snapShot.ref)
                 return dowloadURL
