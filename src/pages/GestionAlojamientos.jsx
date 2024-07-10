@@ -3,7 +3,7 @@ import { useFirestore } from "../hooks/useFirestore";
 import { AuthContext } from "../context/AuthContext";
 
 export const GestionAlojamientos = () => {
-    const [alojamientos, setAlojamientos] = useState()
+    const [alojamientos, setAlojamientos] = useState([])
     const { getAlojamientosByEmail } = useFirestore()
     const { userEmail } = useContext(AuthContext)
 
@@ -15,7 +15,13 @@ export const GestionAlojamientos = () => {
     }, [])
 
     return <div>
-        <h1>Aquí se listarán los alojamientos asociados al email del usuario</h1>
+        <ul className="alojamientos">
+            {alojamientos.length > 0 ? (alojamientos.map((alojamiento) => (
+                <li className="alojamientos-item" key={alojamiento.id}>
+                    <h1>{alojamiento.nombre}</h1>
+                    <h3>{alojamiento.descripcion}</h3>
+                </li>))) : (<li></li>)}
+        </ul>
     </div>
 
 }
