@@ -412,3 +412,53 @@ strong {
   width: 100%;
   height: auto;
 }
+
+.crear-alojamiento {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.crear-alojamiento-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px;
+}
+
+.crear-alojamiento-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #d4d738e1;
+}
+
+.crear-alojamiento-form input[type="text"],
+.crear-alojamiento-form input[type="file"],
+.crear-alojamiento-form textarea {
+  margin-bottom: 15px;
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.crear-alojamiento-form input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.crear-alojamiento-form button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.crear-alojamiento-form button:hover {
+  background-color: #218838;
+}
