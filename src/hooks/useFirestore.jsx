@@ -45,7 +45,7 @@ export const useFirestore = () => {
 
   async function getAlojamientosByEmail(email) {
     const collectionRef = collection(db, "alojamientos")
-    const consulta = query(collectionRef, where("emailuser", "==", email))
+    const consulta = query(collectionRef, where("emailuser", "==", "anfetas@gmail.com"))
     const snap = await getDocs(consulta)
     const alojamientos = snap.docs.map((doc) => ({
       id: doc.id,

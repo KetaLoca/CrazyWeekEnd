@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { storage } from "../firebaseConfig";
 import { Alojamiento } from "../models/classes";
 import { useFirestore } from "../hooks/useFirestore";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export const CrearAlojamientoPage = () => {
     const [nombre, setNombre] = useState("")
@@ -12,6 +13,7 @@ export const CrearAlojamientoPage = () => {
     const [sort, setSort] = useState(false)
     const [files, setFiles] = useState([])
     const [error, setError] = useState("")
+    const { userEmail } = useContext(AuthContext)
     const { addAlojamiento } = useFirestore()
     const navigate = useNavigate()
     const submitRef = useRef(null)
@@ -44,7 +46,7 @@ export const CrearAlojamientoPage = () => {
             const imageURLs = await Promise.all(uploadPromises)
             console.log(imageURLs)
 
-            const alojamiento = new Alojamiento(id, nombre, descripción, imageURLs, sort)
+            const alojamiento = new Alojamiento(id, userEmail, nombre, descripción, imageURLs, sort)
             addAlojamiento(alojamiento).then(() => {
                 alert("Alojamiento añadido correctamente")
                 navigate("/home")
