@@ -152,6 +152,7 @@ export const useFirestore = () => {
   return {
     addAlojamiento,
     getAlojamiento,
+    deleteAlojamiento,
     getAlojamientosByEmail,
     getAlojamientos,
     addUser,
