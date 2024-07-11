@@ -66,11 +66,11 @@ export function GestionAlojamientoPage() {
       <h1>Gestión de alojamiento</h1>
       {alojamiento ? (
         <div>
+          <h2>{alojamiento.nombre}</h2>
+          <ImageCarousel images={alojamiento.imgURL} />
           <aside>
             Gerente: <strong>{alojamiento.emailUser}</strong>
           </aside>
-          <ImageCarousel images={alojamiento.imgURL} />
-          <h2>{alojamiento.nombre}</h2>
           <p>{alojamiento.descripcion}</p>
           <button className="eliminar-reserva-btn" onClick={handleEliminar}>
             Eliminar alojamiento
