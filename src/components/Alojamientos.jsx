@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
 import { Link } from "react-router-dom";
+import { ImageCarousel } from "./ImageCarousel";
 
 export function Alojamientos() {
   const { getAlojamientos } = useFirestore();
@@ -100,7 +101,7 @@ export function Alojamientos() {
         {filteredList.length > 0 ? (
           filteredList.map((alojamiento) => (
             <li className="alojamientos-item" key={alojamiento.id}>
-              <img src={alojamiento.imgURL} alt="Imagen casa rural" />
+              <ImageCarousel images={alojamiento.imgURL} />
               <h2>{alojamiento.nombre}</h2>
               <p>{alojamiento.descripcion}</p>
               <Link
