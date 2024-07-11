@@ -24,15 +24,18 @@ export function Reservas() {
   if (loading) return <h1>Cargando</h1>;
 
   return (
-    <div>
+    <div className="reservas-component">
       {reservas.length > 0 ? (
-        <ul className="reservas">
-          {reservas.map((reserva) => (
-            <li className="reservas-item" key={reserva.id}>
-              <ReservaElement reserva={reserva} />
-            </li>
-          ))}
-        </ul>
+        <div>
+          <h1>Mis reservas activas</h1>
+          <ul className="reservas">
+            {reservas.map((reserva) => (
+              <li className="reservas-item" key={reserva.id}>
+                <ReservaElement reserva={reserva} />
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : (
         <h1>No hay reservas por el momento</h1>
       )}

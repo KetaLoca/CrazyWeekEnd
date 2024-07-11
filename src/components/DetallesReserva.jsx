@@ -50,13 +50,14 @@ export function DetallesReserva() {
     <>
       {alojamiento && reserva ? (
         <div className="reservadetalles">
-          <h1>{alojamiento.nombre}</h1>
+          <h1>Gestión reserva</h1>
+          <h2>{alojamiento.nombre}</h2>
           <ImageCarousel images={alojamiento.imgURL} />
           <strong>
             {format(reserva.fechaInicio, "dd-MM-yyyy")} ||{" "}
             {format(reserva.fechaFin, "dd-MM-yyyy")}
           </strong>
-          <h3>{alojamiento.descripcion}</h3>
+          <p>{alojamiento.descripcion}</p>
           <button className="eliminar-reserva-btn" onClick={handleDelete}>Eliminar reserva</button>
         </div>
       ) : (

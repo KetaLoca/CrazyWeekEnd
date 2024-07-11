@@ -20,7 +20,7 @@ export const ReservaElement = ({ reserva }) => {
 
   return (
     <>
-      <h1>{alojamiento ? alojamiento.nombre : "Nombre no disponible"}</h1>
+      <h2>{alojamiento ? alojamiento.nombre : "Nombre no disponible"}</h2>
       {alojamiento ? (
         <ImageCarousel images={alojamiento.imgURL} />
       ) : (
@@ -32,9 +32,12 @@ export const ReservaElement = ({ reserva }) => {
         />
       )}
       <p>
-        {reserva
-          ? format(reserva.fechaInicio, "dd-MM-yyyy")
-          : "Fecha no encontrada"}
+        <strong>
+          {" "}
+          {reserva
+            ? format(reserva.fechaInicio, "dd-MM-yyyy")
+            : "Fecha no encontrada"}
+        </strong>
       </p>
       <Link
         to={`/reservation/${reserva.id}`}
