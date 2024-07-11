@@ -318,17 +318,6 @@ strong {
   margin-right: 4px;
 }
 
-.alojamiento {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 650px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
 .reservar-button {
   margin: 8px;
   display: inline-block;
