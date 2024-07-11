@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
 import { AuthContext } from "../context/AuthContext";
 import { ImageCarousel } from "../components/ImageCarousel";
+import { Link } from "react-router-dom";
 
-export const GestionAlojamientos = () => {
+export const GestionAlojamientosPage = () => {
   const [alojamientos, setAlojamientos] = useState([]);
   const { getAlojamientosByEmail } = useFirestore();
   const { userEmail } = useContext(AuthContext);
@@ -12,7 +13,6 @@ export const GestionAlojamientos = () => {
     getAlojamientosByEmail(userEmail)
       .then((alojamientos) => {
         setAlojamientos(alojamientos);
-        console.log(alojamientos);
       })
       .catch((e) => {
         console.error("Error obteniendo alojamientos de firestore", e);
@@ -28,6 +28,12 @@ export const GestionAlojamientos = () => {
               <ImageCarousel images={alojamiento.imgURL} />
               <h2>{alojamiento.nombre}</h2>
               <p>{alojamiento.descripcion}</p>
+              <Link
+                to={`/gestionarAlojamiento/${alojamiento.id}`}
+                style={{ textDecoration: "none", color: "green" }}
+              >
+                Modificar
+              </Link>
             </li>
           ))
         ) : (
