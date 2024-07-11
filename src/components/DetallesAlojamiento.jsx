@@ -106,10 +106,10 @@ export function DetallesAlojamiento() {
     return <h1>No se ha encontrado el alojamiento</h1>;
   }
   return (
-    <div className="alojamiento">
+    <div className="alojamiento-item">
       <h1>{alojamiento.nombre}</h1>
       <ImageCarousel className="imgcarousel" images={alojamiento.imgURL} />
-      <h2>{alojamiento.descripcion}</h2>
+      <p>{alojamiento.descripcion}</p>
 
       <div>
         <label>
