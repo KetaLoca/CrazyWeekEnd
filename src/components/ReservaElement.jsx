@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
 import { Link } from "react-router-dom";
+import { ImageCarousel } from "./ImageCarousel";
 
 export const ReservaElement = ({ reserva }) => {
   const [alojamiento, setAlojamiento] = useState();
@@ -19,14 +20,16 @@ export const ReservaElement = ({ reserva }) => {
   return (
     <>
       <h1>{alojamiento ? alojamiento.nombre : "Nombre no disponible"}</h1>
-      <img
-        src={
-          alojamiento
-            ? alojamiento.imgURL
-            : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
-        }
-        alt="Foto portada alojamiento"
-      />
+      {alojamiento ? (
+        <ImageCarousel images={alojamiento.imgURL} />
+      ) : (
+        <img
+          src={
+            "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
+          }
+          alt="Foto portada alojamiento"
+        />
+      )}
       <p>{reserva ? reserva.fechaInicio : "Fecha no encontrada"}</p>
       <Link
         to={`/reservation/${reserva.id}`}

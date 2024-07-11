@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { format } from "date-fns";
+import { ImageCarousel } from "./ImageCarousel";
 
 export function DetallesReserva() {
   const { id } = useParams();
@@ -50,7 +51,7 @@ export function DetallesReserva() {
       {alojamiento && reserva ? (
         <div className="reservadetalles">
           <h1>{alojamiento.nombre}</h1>
-          <img src={alojamiento.imgURL} />
+          <ImageCarousel images={alojamiento.imgURL} />
           <strong>
             {format(reserva.fechaInicio, "dd-MM-yyyy")} ||{" "}
             {format(reserva.fechaFin, "dd-MM-yyyy")}
