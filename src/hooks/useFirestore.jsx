@@ -12,7 +12,6 @@ import {
 import { Alojamiento, Reserva, User } from "../models/classes";
 
 export const useFirestore = () => {
-
   async function addAlojamiento(alojamiento) {
     await setDoc(doc(db, "alojamientos", alojamiento.id), {
       id: alojamiento.id,
@@ -20,8 +19,8 @@ export const useFirestore = () => {
       nombre: alojamiento.nombre,
       descripcion: alojamiento.descripcion,
       animales: alojamiento.animales,
-      imgURL: alojamiento.imgURL
-    })
+      imgURL: alojamiento.imgURL,
+    });
   }
 
   async function getAlojamiento(id) {
@@ -43,15 +42,20 @@ export const useFirestore = () => {
     }
   }
 
+  async function deleteAlojamiento(id) {
+    const docRef = doc(db, "alojamientos", id);
+    await deleteDoc(docRef);
+  }
+
   async function getAlojamientosByEmail(email) {
-    const collectionRef = collection(db, "alojamientos")
-    const consulta = query(collectionRef, where("emailuser", "==", email))
-    const snap = await getDocs(consulta)
+    const collectionRef = collection(db, "alojamientos");
+    const consulta = query(collectionRef, where("emailuser", "==", email));
+    const snap = await getDocs(consulta);
     const alojamientos = snap.docs.map((doc) => ({
       id: doc.id,
-      ...doc.data()
-    }))
-    return alojamientos
+      ...doc.data(),
+    }));
+    return alojamientos;
   }
 
   async function getAlojamientos() {
