@@ -6,6 +6,7 @@ import {
   doc,
   getDoc,
   deleteDoc,
+  deleteDocs,
   where,
   query,
 } from "firebase/firestore";
@@ -45,6 +46,10 @@ export const useFirestore = () => {
   async function deleteAlojamiento(id) {
     const docRef = doc(db, "alojamientos", id);
     await deleteDoc(docRef);
+
+    const collectionRef = collection(db, "reservas");
+    const consulta = query(collectionRef, where("idalojamiento", "==", id));
+    await deleteDocs(consulta);
   }
 
   async function getAlojamientosByEmail(email) {
