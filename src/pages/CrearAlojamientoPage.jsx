@@ -13,6 +13,7 @@ export const CrearAlojamientoPage = () => {
   const [sort, setSort] = useState(false);
   const [files, setFiles] = useState([]);
   const [error, setError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const { userEmail } = useContext(AuthContext);
   const { addAlojamiento } = useFirestore();
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ export const CrearAlojamientoPage = () => {
     }
 
     try {
+      setUploading(true);
       const id = uuid();
 
       const uploadPromises = files.map(async (file, index) => {
@@ -63,6 +65,7 @@ export const CrearAlojamientoPage = () => {
       );
       addAlojamiento(alojamiento)
         .then(() => {
+          setUploading(false);
           alert("Alojamiento añadido correctamente");
           navigate("/home");
         })
@@ -82,6 +85,10 @@ export const CrearAlojamientoPage = () => {
 
   function handleFilesChange(e) {
     setFiles(Array.from(e.target.files));
+  }
+
+  if (uploading) {
+    return <h1>Creando alojamiento...</h1>;
   }
 
   return (
