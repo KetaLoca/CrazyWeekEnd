@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
 import { v4 as uuidv4 } from "uuid";
+import { ImageCarousel } from "./ImageCarousel";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
@@ -31,7 +32,7 @@ export function DetallesAlojamiento() {
       })
       .catch((e) => {
         alert("Error recuperando el alojamiento");
-        console.error(e)
+        console.error(e);
       });
 
     getReservasByAlojamiento(id)
@@ -107,7 +108,7 @@ export function DetallesAlojamiento() {
   return (
     <div className="alojamiento">
       <h1>{alojamiento.nombre}</h1>
-      <img src={alojamiento.imgURL} alt="Imagen casa rural" />
+      <ImageCarousel className="imgcarousel" images={alojamiento.imgURL} />
       <h2>{alojamiento.descripcion}</h2>
 
       <div>
@@ -133,7 +134,6 @@ export function DetallesAlojamiento() {
           />
         </label>
       </div>
-
       <div>
         <label>
           Fecha de fin:
@@ -156,7 +156,7 @@ export function DetallesAlojamiento() {
           />
         </label>
       </div>
-      <button onClick={handleReservar}>Reservar</button>
+      <button className="reservar-button" onClick={handleReservar}>Reservar</button>
     </div>
   );
 }

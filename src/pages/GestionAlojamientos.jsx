@@ -25,9 +25,9 @@ export const GestionAlojamientos = () => {
         {alojamientos.length > 0 ? (
           alojamientos.map((alojamiento) => (
             <li className="alojamientos-item" key={alojamiento.id}>
-              <h1>{alojamiento.nombre}</h1>
               <ImageCarousel images={alojamiento.imgURL} />
-              <h3>{alojamiento.descripcion}</h3>
+              <h2>{alojamiento.nombre}</h2>
+              <p>{alojamiento.descripcion}</p>
             </li>
           ))
         ) : (
