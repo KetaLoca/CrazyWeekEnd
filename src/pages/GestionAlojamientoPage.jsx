@@ -18,6 +18,8 @@ export function GestionAlojamientoPage() {
       });
   }, [id]);
 
+  const handleEliminar = () => {}
+
   return (
     <div>
       <h1>Gestión de alojamiento</h1>
@@ -25,6 +27,7 @@ export function GestionAlojamientoPage() {
         <div>
           <h2>{alojamiento.nombre}</h2>
           <ImageCarousel images={alojamiento.imgURL} />
+          <button style={{marginTop:"22px"}} className="eliminar-reserva-btn" onClick={handleEliminar}>Eliminar alojamiento</button>
         </div>
       ) : (
         <h3>No se encuentra el alojamiento</h3>
