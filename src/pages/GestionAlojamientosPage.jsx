@@ -39,7 +39,7 @@ export const GestionAlojamientosPage = () => {
         ) : (
           <li>
             <h1>
-              No existen alojamientos gestionados por el usuario por el momento
+              No existe ningún alojamiento gestionado por el usuario activo
             </h1>
           </li>
         )}

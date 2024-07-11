@@ -9,18 +9,16 @@ export function GestionAlojamientoPage() {
   const [alojamiento, setAlojamiento] = useState();
   const { getAlojamiento } = useFirestore();
   const { userEmail } = useContext(AuthContext);
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAlojamiento(id)
       .then((alojamiento) => {
-        console.log(alojamiento);
-        console.log(alojamiento.emailUser);
         if (alojamiento.emailUser == userEmail) {
           setAlojamiento(alojamiento);
         } else {
           alert("Debe estar logueado y ser el gerente del alojamiento");
-          navigate("/home");
+          navigate("/home")
         }
       })
       .catch((e) => {
