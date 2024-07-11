@@ -57,7 +57,7 @@ export function DetallesReserva() {
             {format(reserva.fechaFin, "dd-MM-yyyy")}
           </strong>
           <h3>{alojamiento.descripcion}</h3>
-          <button onClick={handleDelete}>Eliminar reserva</button>
+          <button className="eliminar-reserva-btn" onClick={handleDelete}>Eliminar reserva</button>
         </div>
       ) : (
         <h1>No hay datos</h1>
