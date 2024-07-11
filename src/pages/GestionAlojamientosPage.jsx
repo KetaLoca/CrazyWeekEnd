@@ -21,6 +21,7 @@ export const GestionAlojamientosPage = () => {
 
   return (
     <div>
+      {alojamientos != 0 ? <h1>Mis alojamientos</h1> : <></>}
       <ul className="alojamientos">
         {alojamientos.length > 0 ? (
           alojamientos.map((alojamiento) => (

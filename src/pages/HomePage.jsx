@@ -17,11 +17,11 @@ export function HomePage() {
   }
 
   function handleCrearAlojamiento() {
-    navigate("/crearAlojamiento")
+    navigate("/crearAlojamiento");
   }
 
   function handleMisAlojamientos() {
-    navigate("/gestionarAlojamientos")
+    navigate("/gestionarAlojamientos");
   }
 
   function handleAccount() {
@@ -55,12 +55,16 @@ export function HomePage() {
         <button onClick={handleBuscarAlojamientos}>Buscar alojamientos</button>
         <button onClick={handleMisReservas}>Consultar mis reservas</button>
         <button onClick={handleCrearAlojamiento}>Añadir alojamiento</button>
-        <button onClick={handleMisAlojamientos}>Gestionar mis alojamientos</button>
+        <button onClick={handleMisAlojamientos}>
+          Gestionar mis alojamientos
+        </button>
         <button onClick={handleAccount}>Mi cuenta</button>
         {isLogged ? (
           <button onClick={handleLogOut}>Cerrar sesión</button>
         ) : (
-          <button onClick={handleLogOut}>Iniciar sesión</button>
+          <button style={{ backgroundColor: "red" }} onClick={handleLogOut}>
+            Iniciar sesión
+          </button>
         )}
       </div>
     </div>
