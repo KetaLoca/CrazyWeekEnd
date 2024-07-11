@@ -31,7 +31,7 @@ export const useFirestore = () => {
       const data = docSnap.data();
       const alojamiento = new Alojamiento(
         data.id,
-        data.emailUser,
+        data.emailuser,
         data.nombre,
         data.descripcion,
         data.imgURL,
