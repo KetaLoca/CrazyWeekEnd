@@ -6,6 +6,7 @@ import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import LocationPicker from "../components/LocationPicker";
 
 export const CrearAlojamientoPage = () => {
   const [nombre, setNombre] = useState("");
@@ -116,8 +117,13 @@ export const CrearAlojamientoPage = () => {
         />
         <label>Se admiten animales?</label>
         <input type="checkbox" onChange={handleSort} checked={sort} />
+
+        <div style={{ alignSelf: "center", padding: "20px" }}>
+          <label>Ubicación:</label>
+          <LocationPicker />
+        </div>
+
         <label>Añade las fotos correspondientes</label>
-        
         <input type="file" multiple onChange={handleFilesChange} />
         <button ref={submitRef} type="submit">
           Añadir alojamiento
