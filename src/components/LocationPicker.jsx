@@ -23,7 +23,10 @@ const LocationPicker = ({ onLocationSelected }) => {
       libraries={libraries}
     >
       <GoogleMap
-        mapContainerStyle={{ width: "420px", height: "300px" }}
+        mapContainerStyle={{
+          width: "420px",
+          height: "300px",
+        }}
         center={location}
         zoom={15}
         onClick={handleSelect}

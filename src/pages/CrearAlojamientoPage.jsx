@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { storage } from "../firebaseConfig";
 import { Alojamiento } from "../models/classes";
 import { useFirestore } from "../hooks/useFirestore";

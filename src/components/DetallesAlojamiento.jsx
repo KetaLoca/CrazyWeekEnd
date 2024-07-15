@@ -9,6 +9,7 @@ import { AuthContext } from "../context/AuthContext";
 import { Reserva } from "../models/classes";
 import { v4 as uuidv4 } from "uuid";
 import { ImageCarousel } from "./ImageCarousel";
+import LocationViewer from "./LocationViewer";
 
 export function DetallesAlojamiento() {
   const { id } = useParams();
@@ -20,6 +21,7 @@ export function DetallesAlojamiento() {
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [location, setLocation] = useState(null);
   const [disabledDays, setDisabledDays] = useState();
   const navigate = useNavigate();
   const today = new Date();
@@ -28,6 +30,7 @@ export function DetallesAlojamiento() {
     getAlojamiento(id)
       .then((a) => {
         setAlojamiento(a);
+        setLocation(a.ubicacion);
         setLoading(false);
       })
       .catch((e) => {
@@ -106,9 +109,12 @@ export function DetallesAlojamiento() {
     return <h1>No se ha encontrado el alojamiento</h1>;
   }
   return (
-    <div className="alojamiento-item" style={{maxWidth:"700px"}}>
+    <div className="alojamiento-item" style={{ maxWidth: "700px" }}>
       <h1>{alojamiento.nombre}</h1>
       <ImageCarousel className="imgcarousel" images={alojamiento.imgURL} />
+      <div style={{ padding: "6px" }}>
+        <LocationViewer location={location} />
+      </div>
       <p>{alojamiento.descripcion}</p>
 
       <div>
