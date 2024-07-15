@@ -12,6 +12,7 @@ export const CrearAlojamientoPage = () => {
   const [descripción, setDescripcion] = useState("");
   const [sort, setSort] = useState(false);
   const [files, setFiles] = useState([]);
+  const [location, setLocation] = useState(null);
   const [error, setError] = useState("");
   const [uploading, setUploading] = useState(false);
   const { userEmail } = useContext(AuthContext);
@@ -87,6 +88,10 @@ export const CrearAlojamientoPage = () => {
     setFiles(Array.from(e.target.files));
   }
 
+  const handleLocationSelected = (location) => {
+    setLocation(location);
+  };
+
   if (uploading) {
     return <h1>Creando alojamiento...</h1>;
   }
@@ -112,6 +117,7 @@ export const CrearAlojamientoPage = () => {
         <label>Se admiten animales?</label>
         <input type="checkbox" onChange={handleSort} checked={sort} />
         <label>Añade las fotos correspondientes</label>
+        
         <input type="file" multiple onChange={handleFilesChange} />
         <button ref={submitRef} type="submit">
           Añadir alojamiento
