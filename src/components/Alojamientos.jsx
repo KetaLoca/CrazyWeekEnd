@@ -44,12 +44,12 @@ export function Alojamientos() {
       setFilteredList(
         alojamientosList.filter(
           (alojamiento) =>
-            alojamiento.nombre
+            (alojamiento.nombre
               .toLowerCase()
               .includes(inputQuery.toLowerCase()) ||
-            alojamiento.descripcion
-              .toLowerCase()
-              .includes(inputQuery.toLowerCase())
+              alojamiento.descripcion
+                .toLowerCase()
+                .includes(inputQuery.toLowerCase()))
         )
       );
     }
@@ -62,12 +62,6 @@ export function Alojamientos() {
 
   function handleSort() {
     setSort(!sort);
-
-    if (!sort) {
-      setFilteredList(
-        filteredList.filter((alojamiento) => alojamiento.animales == sort)
-      );
-    }
   }
 
   if (loading) return <h1>Cargando</h1>;
