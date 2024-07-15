@@ -58,7 +58,6 @@ export const CrearAlojamientoPage = () => {
       });
 
       const imageURLs = await Promise.all(uploadPromises);
-      console.log(imageURLs);
 
       const alojamiento = new Alojamiento(
         id,
@@ -66,7 +65,8 @@ export const CrearAlojamientoPage = () => {
         nombre,
         descripción,
         imageURLs,
-        sort
+        sort,
+        location
       );
       addAlojamiento(alojamiento)
         .then(() => {
