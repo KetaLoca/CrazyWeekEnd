@@ -112,9 +112,13 @@ export function DetallesAlojamiento() {
     <div className="alojamiento-item" style={{ maxWidth: "700px" }}>
       <h1>{alojamiento.nombre}</h1>
       <ImageCarousel className="imgcarousel" images={alojamiento.imgURL} />
-      <div style={{ padding: "6px" }}>
-        <LocationViewer location={location} />
-      </div>
+
+      {alojamiento.ubicacion && (
+        <div style={{ padding: "6px" }}>
+          <LocationViewer location={location} />
+        </div>
+      )}
+
       <p>{alojamiento.descripcion}</p>
 
       <div>
