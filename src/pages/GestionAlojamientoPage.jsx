@@ -65,7 +65,7 @@ export function GestionAlojamientoPage() {
     <div>
       <h1>Gestión de alojamiento</h1>
       {alojamiento ? (
-        <div>
+        <div style={{ maxWidth: "700px" }}>
           <h2>{alojamiento.nombre}</h2>
           <ImageCarousel images={alojamiento.imgURL} />
           <aside>

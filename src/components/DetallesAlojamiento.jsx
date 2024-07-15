@@ -106,7 +106,7 @@ export function DetallesAlojamiento() {
     return <h1>No se ha encontrado el alojamiento</h1>;
   }
   return (
-    <div className="alojamiento-item">
+    <div className="alojamiento-item" style={{maxWidth:"700px"}}>
       <h1>{alojamiento.nombre}</h1>
       <ImageCarousel className="imgcarousel" images={alojamiento.imgURL} />
       <p>{alojamiento.descripcion}</p>

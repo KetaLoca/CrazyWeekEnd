@@ -49,7 +49,7 @@ export function DetallesReserva() {
   return (
     <>
       {alojamiento && reserva ? (
-        <div className="reservadetalles">
+        <div className="reservadetalles" style={{ maxWidth: "700px" }}>
           <h1>Gestión reserva</h1>
           <h2>{alojamiento.nombre}</h2>
           <ImageCarousel images={alojamiento.imgURL} />
@@ -58,7 +58,9 @@ export function DetallesReserva() {
             {format(reserva.fechaFin, "dd-MM-yyyy")}
           </strong>
           <p>{alojamiento.descripcion}</p>
-          <button className="eliminar-reserva-btn" onClick={handleDelete}>Eliminar reserva</button>
+          <button className="eliminar-reserva-btn" onClick={handleDelete}>
+            Eliminar reserva
+          </button>
         </div>
       ) : (
         <h1>No hay datos</h1>
