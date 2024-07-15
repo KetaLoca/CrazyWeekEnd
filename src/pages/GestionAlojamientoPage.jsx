@@ -50,6 +50,7 @@ export function GestionAlojamientoPage() {
             navigate("/home");
           })
           .catch((error) => {
+            alert("Error eliminando el alojamiento");
             console.error(
               "Error eliminando el alojamiento de la base de datos:",
               error
