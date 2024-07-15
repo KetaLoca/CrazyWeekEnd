@@ -19,7 +19,6 @@ export const CrearAlojamientoPage = () => {
   const { userEmail } = useContext(AuthContext);
   const { addAlojamiento } = useFirestore();
   const navigate = useNavigate();
-  const submitRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -129,9 +128,7 @@ export const CrearAlojamientoPage = () => {
 
         <label>Añade las fotos correspondientes</label>
         <input type="file" multiple onChange={handleFilesChange} />
-        <button ref={submitRef} type="submit">
-          Añadir alojamiento
-        </button>
+        <button type="submit">Añadir alojamiento</button>
         <p className="error">{error}</p>
       </form>
     </div>

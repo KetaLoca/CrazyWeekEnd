@@ -20,6 +20,7 @@ export const useFirestore = () => {
       descripcion: alojamiento.descripcion,
       animales: alojamiento.animales,
       imgURL: alojamiento.imgURL,
+      ubicacion: alojamiento.ubicacion,
     });
   }
 
@@ -34,7 +35,8 @@ export const useFirestore = () => {
         data.nombre,
         data.descripcion,
         data.imgURL,
-        data.animales
+        data.animales,
+        data.ubicacion
       );
       return alojamiento;
     } else {

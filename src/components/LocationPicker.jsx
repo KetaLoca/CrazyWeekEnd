@@ -4,7 +4,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 const libraries = ["places"];
 
 const LocationPicker = ({ onLocationSelected }) => {
-  const [location, setLocation] = useState({ lat: 40.419998, lng: -3.706174 }); // Ubicación inicial (Madrid)
+  const [location, setLocation] = useState({ lat: 40.419998, lng: -3.706174 });
 
   const handleSelect = (result) => {
     setLocation({
