@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-const LocationPicker = () => {
+const libraries = ["places"];
+
+const LocationPicker = ({ onLocationSelected }) => {
   const [location, setLocation] = useState({ lat: 40.419998, lng: -3.706174 }); // Ubicación inicial (Madrid)
 
   const handleSelect = (result) => {
     setLocation({
+      lat: result.latLng.lat(),
+      lng: result.latLng.lng(),
+    });
+    onLocationSelected({
       lat: result.latLng.lat(),
       lng: result.latLng.lng(),
     });
@@ -14,10 +20,10 @@ const LocationPicker = () => {
   return (
     <LoadScript
       googleMapsApiKey="AIzaSyATZpIVvnaIdZvwB8g5lsyTGNttQiTK23w"
-      libraries={["places"]}
+      libraries={libraries}
     >
       <GoogleMap
-        mapContainerStyle={{ width: "400px", height: "400px" }}
+        mapContainerStyle={{ width: "420px", height: "300px" }}
         center={location}
         zoom={15}
         onClick={handleSelect}

@@ -28,6 +28,10 @@ export const CrearAlojamientoPage = () => {
     return () => clearTimeout(timer);
   }, [error]);
 
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -120,7 +124,7 @@ export const CrearAlojamientoPage = () => {
 
         <div style={{ alignSelf: "center", padding: "20px" }}>
           <label>Ubicación:</label>
-          <LocationPicker />
+          <LocationPicker onLocationSelected={handleLocationSelected} />
         </div>
 
         <label>Añade las fotos correspondientes</label>
