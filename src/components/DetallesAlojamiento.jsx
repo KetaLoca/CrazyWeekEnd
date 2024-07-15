@@ -58,12 +58,12 @@ export function DetallesAlojamiento() {
 
   function handleReservar(e) {
     e.preventDefault();
-    if (!startDate || !endDate) {
-      alert("Debe seleccionar ambas fechas antes de reservar");
+    if (!isLogged) {
+      alert("Debe iniciar sesión para poder reservar algún alojamiento");
       return;
     }
-    if (!isLogged) {
-      alert("Debe iniciar sesión antes de reservar ningún alojamiento");
+    if (!startDate || !endDate) {
+      alert("Debe seleccionar ambas fechas para la reserva");
       return;
     }
     const formattedStartDate = format(startDate, "yyyy-MM-dd");
@@ -156,7 +156,9 @@ export function DetallesAlojamiento() {
           />
         </label>
       </div>
-      <button className="reservar-button" onClick={handleReservar}>Reservar</button>
+      <button className="reservar-button" onClick={handleReservar}>
+        Reservar
+      </button>
     </div>
   );
 }
