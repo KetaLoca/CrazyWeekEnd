@@ -135,7 +135,7 @@ export const CrearAlojamientoPage = () => {
         </div>
 
         <label>Añade las fotos correspondientes</label>
-        <input type="file" multiple onChange={handleFilesChange} />
+        <input type="file" multiple accept="image/*" onChange={handleFilesChange} />
         <button type="submit">Añadir alojamiento</button>
         <p className="error">{error}</p>
       </form>
