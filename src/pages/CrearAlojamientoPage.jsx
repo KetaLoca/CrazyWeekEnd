@@ -55,7 +55,7 @@ export const CrearAlojamientoPage = () => {
     // }
 
     if (!files.every((file) => file.type.startsWith("/images"))) {
-      setError("Solo se admiten imágenes");
+      setError("Solo se pueden subir imágenes");
       return;
     }
 
