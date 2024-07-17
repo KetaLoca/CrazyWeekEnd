@@ -46,12 +46,17 @@ export const CrearAlojamientoPage = () => {
       return;
     }
 
-    for (let i = 0; i < files.length; i++) {
-      const fileType = files[i].type;
-      if (!fileType.startsWith("image/")) {
-        setError("Solo se permite subir imágenes");
-        return;
-      }
+    // for (let i = 0; i < files.length; i++) {
+    //   const fileType = files[i].type;
+    //   if (!fileType.startsWith("image/")) {
+    //     setError("Solo se permite subir imágenes");
+    //     return;
+    //   }
+    // }
+
+    if (!files.every((file) => file.type.startsWith("/images"))) {
+      setError("Solo se admiten imágenes");
+      return;
     }
 
     try {
