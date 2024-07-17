@@ -46,6 +46,14 @@ export const CrearAlojamientoPage = () => {
       return;
     }
 
+    for (let i = 0; i < files.length; i++) {
+      const fileType = files[i].type;
+      if (!fileType.startsWith("image/")) {
+        setError("Solo se permite subir imágenes");
+        return;
+      }
+    }
+
     try {
       setUploading(true);
       const id = uuid();
