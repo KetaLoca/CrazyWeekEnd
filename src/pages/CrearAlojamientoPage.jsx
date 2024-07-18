@@ -27,10 +27,6 @@ export const CrearAlojamientoPage = () => {
     return () => clearTimeout(timer);
   }, [error]);
 
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
-
   async function handleSubmit(e) {
     e.preventDefault();
 
