@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { auth } from "../firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useFirestore } from "../hooks/useFirestore";
+import { User } from "../models/classes";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export function AuthRegisterPage() {
     const [email, setEmail] = useState("")
@@ -10,7 +13,9 @@ export function AuthRegisterPage() {
     const [nombre, setNombre] = useState("")
     const [apellidos, setApellidos] = useState("")
     const [telefono, setTelefono] = useState("")
+    const { setUserEmail, setIsLogged } = useContext(AuthContext)
     const { addUser } = useFirestore()
+    const navigate = useNavigate()
 
 
     const handleSubmit = (e) => {
@@ -25,7 +30,24 @@ export function AuthRegisterPage() {
             return
         }
 
-        createUserWithEmailAndPassword(auth, email, password).then(() => { }).catch((e) => {
+        createUserWithEmailAndPassword(auth, email, password).then(() => {
+
+            const user = new User(email, nombre, apellidos, telefono)
+            addUser(user).then(() => {
+                signInWithEmailAndPassword(auth, email, password).then(() => {
+                    setUserEmail(email)
+                    setIsLogged(true)
+                    navigate("/home")
+                }).catch((e) => {
+                    console.error(e)
+                    alert("Error iniciando sesión")
+                })
+            }).catch((e) => {
+                console.error(e)
+                alert("Error añadiendo datos del usuario a la base de datos")
+            })
+
+        }).catch((e) => {
             console.error(e)
             alert("Erro creando el usuario, el email podría estar en uso")
         })
