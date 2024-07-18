@@ -25,7 +25,7 @@ export function AuthRegisterPage() {
             alert("Debe rellenar todos los campos para poder registrarse")
             return
         }
-        if (password == verifyPassword) {
+        if (password != verifyPassword) {
             alert("Los dos campos de contraseña no coinciden")
             return
         }
@@ -57,12 +57,12 @@ export function AuthRegisterPage() {
         <div className="authcontainer">
             <h1>Registrarse</h1>
             <form className="loginform" onSubmit={handleSubmit}>
-                <input type="email" placeholder="Introduzca su correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" placeholder="Introduzca una contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <input type="password" placeholder="Repita la contraseña" value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)} />
-                <input type="text" placeholder="Introduzca su nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-                <input type="text" placeholder="Introduzca sus apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
-                <input type="text" placeholder="Introduzca su teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
+                <input type="email" placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" placeholder="Repetir contraseña" value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)} />
+                <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                <input type="text" placeholder="Apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
+                <input type="text" placeholder="Teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
                 <button type="onSubmit" onClick={handleSubmit}>Registrarse</button>
                 <button onClick={() => { navigate("/auth") }}>Inicio de sesión</button>
             </form>
