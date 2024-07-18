@@ -13,6 +13,7 @@ export function AuthRegisterPage() {
     const [nombre, setNombre] = useState("")
     const [apellidos, setApellidos] = useState("")
     const [telefono, setTelefono] = useState("")
+    const [loading, setLoading] = useState(false)
     const { setUserEmail, setIsLogged } = useContext(AuthContext)
     const { addUser } = useFirestore()
     const navigate = useNavigate()
@@ -30,11 +31,13 @@ export function AuthRegisterPage() {
             return
         }
 
-        createUserWithEmailAndPassword(auth, email, password).then(() => {
+        setLoading(true)
 
+        createUserWithEmailAndPassword(auth, email, password).then(() => {
             const user = new User(email, nombre, apellidos, telefono)
             addUser(user).then(() => {
                 signInWithEmailAndPassword(auth, email, password).then(() => {
+                    setLoading(false)
                     setUserEmail(email)
                     setIsLogged(true)
                     navigate("/home")
@@ -49,9 +52,11 @@ export function AuthRegisterPage() {
 
         }).catch((e) => {
             console.error(e)
-            alert("Erro creando el usuario, el email podría estar en uso")
-        })
+            alert("Error creando el usuario, el email podría estar en uso")
+        }).finally(() => { setLoading(false) })
     }
+
+    if (loading) return <h1>Registrando usuario...</h1>
 
     return (
         <div className="authcontainer">
