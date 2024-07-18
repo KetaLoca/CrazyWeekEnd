@@ -40,7 +40,6 @@ export function AuthRegisterPage() {
                     setLoading(false)
                     setUserEmail(email)
                     setIsLogged(true)
-                    navigate("/home")
                 }).catch((e) => {
                     console.error(e)
                     alert("Error iniciando sesión")
@@ -53,7 +52,7 @@ export function AuthRegisterPage() {
         }).catch((e) => {
             console.error(e)
             alert("Error creando el usuario, el email podría estar en uso")
-        }).finally(() => { setLoading(false) })
+        }).finally(() => { navigate("/home") })
     }
 
     if (loading) return <h1>Registrando usuario...</h1>
