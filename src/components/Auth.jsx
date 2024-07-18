@@ -1,10 +1,7 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebaseConfig";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
@@ -48,16 +45,7 @@ export const Auth = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert("Usuario registrado correctamente");
-        resetForm();
-      })
-      .catch((error) => {
-        console.log(error);
-        setError("Error al registrar el usuario");
-        resetForm();
-      });
+    navigate("/authRegister")
   };
 
   return (

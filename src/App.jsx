@@ -13,6 +13,7 @@ import { AlojamientoPage } from "./pages/AlojamientoPage";
 import { CrearAlojamientoPage } from "./pages/CrearAlojamientoPage";
 import { GestionAlojamientosPage } from "./pages/GestionAlojamientosPage";
 import { GestionAlojamientoPage } from "./pages/GestionAlojamientoPage";
+import { AuthRegisterPage } from "./pages/AuthRegisterPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="*" element={<Page404 />} />
         <Route path="/" element={<Navigate to="/auth" />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/authRegister" element={<AuthRegisterPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/alojamientos" element={<AlojamientosPage />} />
         <Route path="/alojamiento/:id" element={<AlojamientoPage />} />
