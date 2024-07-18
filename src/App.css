@@ -95,7 +95,7 @@ img {
   border-radius: 10px;
 }
 
-#loginform {
+.loginform {
   margin: 0 auto;
   position: relative;
   display: block;
@@ -105,14 +105,14 @@ img {
   border-radius: 5px;
 }
 
-#loginform p {
+.loginform p {
   top: -8px;
   text-align: center;
   height: 3px;
   color: red;
 }
 
-#loginform input {
+.loginform input {
   display: block;
   width: calc(100% - 20px);
   margin: 10px auto;
@@ -121,7 +121,7 @@ img {
   border-radius: 5px;
 }
 
-#loginform button {
+.loginform button {
   background-color: #333;
   color: white;
   padding: 10px 20px;
@@ -131,7 +131,7 @@ img {
   margin: 5px;
 }
 
-#loginform button:hover {
+.loginform button:hover {
   background-color: #555;
 }
 

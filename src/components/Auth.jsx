@@ -62,8 +62,8 @@ export const Auth = () => {
 
   return (
     <div className="authcontainer">
-      <h1>Autenticación</h1>
-      <form id="loginform">
+      <h1>Iniciar sesión</h1>
+      <form className="loginform">
         <input
           type="email"
           placeholder="Correo electrónico"
