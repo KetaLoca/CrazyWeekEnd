@@ -63,7 +63,8 @@ export function AuthRegisterPage() {
                 <input type="text" placeholder="Introduzca su nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 <input type="text" placeholder="Introduzca sus apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
                 <input type="text" placeholder="Introduzca su teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
-                <button type="onSubmit" onClick={handleSubmit}>Registrar cuenta</button>
+                <button type="onSubmit" onClick={handleSubmit}>Registrarse</button>
+                <button onClick={() => { navigate("/auth") }}>Inicio de sesión</button>
             </form>
         </div>
     )
