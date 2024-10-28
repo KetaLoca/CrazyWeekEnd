@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
-import { auth } from "../firebaseConfig";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { useFirestore } from "../hooks/useFirestore";
 import { User } from "../models/classes";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 export function AuthRegisterPage() {
     const [email, setEmail] = useState("")
@@ -15,11 +13,10 @@ export function AuthRegisterPage() {
     const [telefono, setTelefono] = useState("")
     const [loading, setLoading] = useState(false)
     const { setUserEmail, setIsLogged } = useContext(AuthContext)
-    const { addUser } = useFirestore()
     const navigate = useNavigate()
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (!email || !password || !verifyPassword || !nombre || !apellidos || !telefono) {
@@ -31,28 +28,31 @@ export function AuthRegisterPage() {
             return
         }
 
-        setLoading(true)
-
-        createUserWithEmailAndPassword(auth, email, password).then(() => {
-            const user = new User(email, nombre, apellidos, telefono)
-            addUser(user).then(() => {
-                signInWithEmailAndPassword(auth, email, password).then(() => {
+        await axios.post('http://localhost:3000/users/register',
+            {
+                email: email,
+                password: password,
+                nombre: nombre,
+                apellidos: apellidos,
+                telefono: Number.parseInt(telefono)
+            })
+            .then((response) => {
+                if (response.status === 201) {
                     setUserEmail(email)
                     setIsLogged(true)
-                    navigate("/home")
-                }).catch((e) => {
-                    console.error(e)
-                    alert("Error iniciando sesión")
-                })
-            }).catch((e) => {
-                console.error(e)
-                alert("Error añadiendo datos del usuario a la base de datos")
+                    alert("Usuario registrado correctamente, ya puede iniciar sesión")
+                    navigate("/auth")
+                }
             })
+            .catch((error) => {
+                if (error.status === 500) {
+                    alert("Error creando el usuario, vuelva a intentarlo")
+                }
 
-        }).catch((e) => {
-            console.error(e)
-            alert("Error creando el usuario, el email podría estar en uso")
-        })
+                if (error.status === 409) {
+                    alert("El email que intenta registrar ya está en uso")
+                }
+            })
     }
 
     if (loading) return <h1>Registrando usuario...</h1>
@@ -67,8 +67,8 @@ export function AuthRegisterPage() {
                 <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 <input type="text" placeholder="Apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
                 <input type="text" placeholder="Teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
-                <button type="onSubmit" onClick={handleSubmit}>Registrarse</button>
                 <button onClick={() => { navigate("/auth") }}>Inicio de sesión</button>
+                <button type="onSubmit" onClick={handleSubmit}>Registrarse</button>
             </form>
         </div>
     )
