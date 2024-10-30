@@ -3,6 +3,8 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+axios.defaults.withCredentials = true
+
 export function HomePage() {
   const { userEmail, isLogged, setIsLogged } = useContext(AuthContext);
   const logOutButtonRef = useRef(null)

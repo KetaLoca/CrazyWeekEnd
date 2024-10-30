@@ -114,7 +114,7 @@ export function DetallesAlojamiento() {
       <ImageCarousel className="imgcarousel" images={alojamiento.imgURL} />
 
       {alojamiento.ubicacion && (
-        <div style={{ padding: "6px" }}>
+        <div style={{ padding: "6px", alignSelf: 'center' }}>
           <LocationViewer location={location} />
         </div>
       )}
