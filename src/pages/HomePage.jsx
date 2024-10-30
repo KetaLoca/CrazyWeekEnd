@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebaseConfig";
-import { signOut } from "firebase/auth";
+import axios from "axios";
 
 export function HomePage() {
   const { userEmail, isLogged, setIsLogged } = useContext(AuthContext);
+  const logOutButtonRef = useRef(null)
   const navigate = useNavigate();
 
   function handleBuscarAlojamientos() {
@@ -28,17 +28,25 @@ export function HomePage() {
     navigate("/account");
   }
 
-  function handleLogOut() {
-    signOut(auth)
-      .then(() => {
-        setIsLogged(false);
-        navigate("/");
-        localStorage.removeItem("user");
+  async function handleLogOut(e) {
+    e.preventDefault()
+    logOutButtonRef.current.blur()
+
+    if (!isLogged) {
+      navigate("/auth")
+      return
+    }
+
+    await axios.post('http://localhost:3000/users/logout', null)
+      .then((response) => {
+        if (response.status == 200) {
+          setIsLogged(false)
+          navigate("/auth")
+        }
       })
-      .catch((error) => {
-        console.log(error);
-        alert("Error cerrando sesión");
-      });
+      .catch((e) => {
+        alert("Error cerrando sesión")
+      })
   }
 
   return (
@@ -60,9 +68,9 @@ export function HomePage() {
         </button>
         <button onClick={handleAccount}>Mi cuenta</button>
         {isLogged ? (
-          <button onClick={handleLogOut}>Cerrar sesión</button>
+          <button onClick={handleLogOut} ref={logOutButtonRef}>Cerrar sesión</button>
         ) : (
-          <button style={{ backgroundColor: "red" }} onClick={handleLogOut}>
+          <button style={{ backgroundColor: "red" }} onClick={handleLogOut} ref={logOutButtonRef}>
             Iniciar sesión
           </button>
         )}

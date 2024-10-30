@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { User } from "../models/classes";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -38,8 +37,6 @@ export function AuthRegisterPage() {
             })
             .then((response) => {
                 if (response.status === 201) {
-                    setUserEmail(email)
-                    setIsLogged(true)
                     alert("Usuario registrado correctamente, ya puede iniciar sesión")
                     navigate("/auth")
                 }

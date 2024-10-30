@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { auth } from "../firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
@@ -27,20 +26,44 @@ export const Auth = () => {
     signUpButtonRef.current.blur();
   }
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        setUserEmail(email);
-        setIsLogged(true);
-        resetForm();
-        navigate("/home");
+
+    if (!email || !password) {
+      setError("Debe rellenar ambos campos")
+      return
+    }
+
+    await axios.post('http://localhost:3000/users/login',
+      {
+        email: email,
+        password: password
+      }
+    )
+      .then((response) => {
+        if (response.status == 200) {
+          setUserEmail(email)
+          setIsLogged(true)
+          resetForm()
+          navigate("/home")
+        }
       })
-      .catch((error) => {
-        console.log(error);
-        setError("Error al iniciar sesión");
-        resetForm();
-      });
+      .catch((e) => {
+        if (e.status == 400) {
+          setError("Bad request, faltan datos")
+          resetForm()
+        }
+
+        if (e.status == 401) {
+          setError("Contraseña incorrecta")
+          resetForm()
+        }
+
+        if (e.status == 404) {
+          setError("El usuario no existe")
+          resetForm()
+        }
+      })
   };
 
   const handleSignUp = (e) => {
@@ -65,11 +88,11 @@ export const Auth = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <p>{error}</p>
-        <button type="submit" ref={signInButtonRef} onClick={handleSignIn}>
-          Iniciar sesión
-        </button>
         <button ref={signUpButtonRef} onClick={handleSignUp}>
           Registrarse
+        </button>
+        <button type="submit" ref={signInButtonRef} onClick={handleSignIn}>
+          Iniciar sesión
         </button>
       </form>
     </div>
