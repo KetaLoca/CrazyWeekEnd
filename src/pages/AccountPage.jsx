@@ -29,7 +29,7 @@ export function AccountPage() {
         setTelefono(user.telefono);
       })
       .catch((e) => {
-        alert("Aún no hay datos asociados al usuario");
+        alert("No se encuentran datos asociados al usuario");
       });
   }, []);
 
@@ -39,14 +39,13 @@ export function AccountPage() {
       setError("Para modificar su perfil debe iniciar sesión antes");
       return;
     }
-    const user = new User(userEmail, nombre, apellidos, telefono);
+    const user = new User(userEmail, nombre, apellidos, Number.parseInt(telefono));
     addUser(user)
       .then(() => {
         setError("Usuario modificado correctamente");
       })
       .catch((e) => {
         setError("Error añadiendo usuario");
-        console.log(e);
       });
     guardarButtonRef.current.blur();
   }

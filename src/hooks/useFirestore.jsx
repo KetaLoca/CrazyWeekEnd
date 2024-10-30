@@ -10,8 +10,28 @@ import {
   query,
 } from "firebase/firestore";
 import { Alojamiento, Reserva, User } from "../models/classes";
+import axios from "axios";
+
+axios.defaults.withCredentials = true
 
 export const useFirestore = () => {
+
+  async function getUser(email) {
+    const response = await axios.get("http://localhost:3000/users/")
+    return response.data;
+  }
+
+  const addUser = async (user) => {
+    const response = await axios.patch(`http://localhost:3000/users/${user.email}`,
+      {
+        nombre: user.nombre,
+        apellidos: user.apellidos,
+        telefono: user.telefono
+      }
+    )
+    return response
+  }
+
   async function addAlojamiento(alojamiento) {
     await setDoc(doc(db, "alojamientos", alojamiento.id), {
       id: alojamiento.id,
@@ -68,32 +88,6 @@ export const useFirestore = () => {
       ...doc.data(),
     }));
     return alojamientosList;
-  }
-
-  async function addUser(user) {
-    await setDoc(doc(db, "users", user.email), {
-      email: user.email,
-      nombre: user.nombre,
-      apellidos: user.apellidos,
-      telefono: user.telefono,
-    });
-  }
-
-  async function getUser(email) {
-    const userRef = doc(db, "users", email);
-    const docSnap = await getDoc(userRef);
-    if (docSnap.exists()) {
-      const userDoc = docSnap.data();
-      const user = new User(
-        userDoc.email,
-        userDoc.nombre,
-        userDoc.apellidos,
-        userDoc.telefono
-      );
-      return user;
-    } else {
-      return null;
-    }
   }
 
   async function addReserva(reserva) {

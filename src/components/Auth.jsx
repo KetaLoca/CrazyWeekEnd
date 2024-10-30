@@ -74,7 +74,7 @@ export const Auth = () => {
   return (
     <div className="authcontainer">
       <h1>Iniciar sesión</h1>
-      <form className="loginform">
+      <form onSubmit={handleSignIn} className="loginform">
         <input
           type="email"
           placeholder="Correo electrónico"
@@ -91,7 +91,7 @@ export const Auth = () => {
         <button ref={signUpButtonRef} onClick={handleSignUp}>
           Registrarse
         </button>
-        <button type="submit" ref={signInButtonRef} onClick={handleSignIn}>
+        <button type="submit" ref={signInButtonRef}>
           Iniciar sesión
         </button>
       </form>
