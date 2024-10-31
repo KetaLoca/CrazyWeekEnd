@@ -77,7 +77,7 @@ export const useFirestore = () => {
   }
 
   const getReservas = async (email) => {
-    const response = await axios.get(`http://localhost:3000/reservas?email=${email}`)
+    const response = await axios.get(`http://localhost:3000/reservas?userEmail=${email}`)
     return response.data
   };
 
