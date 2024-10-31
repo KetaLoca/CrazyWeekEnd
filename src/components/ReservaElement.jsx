@@ -9,7 +9,7 @@ export const ReservaElement = ({ reserva }) => {
   const { getAlojamiento } = useFirestore();
 
   useEffect(() => {
-    getAlojamiento(reserva.idalojamiento)
+    getAlojamiento(reserva.alojamientoId)
       .then((result) => {
         setAlojamiento(result);
       })

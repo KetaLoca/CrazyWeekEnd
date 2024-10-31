@@ -23,7 +23,7 @@ export class Reserva {
   constructor(id, userEmail, idAlojamiento, fechaInicio, fechaFin) {
     this.id = id;
     this.userEmail = userEmail;
-    this.idAlojamiento = idAlojamiento;
+    this.alojamientoId = idAlojamiento;
     this.fechaInicio = fechaInicio;
     this.fechaFin = fechaFin;
   }

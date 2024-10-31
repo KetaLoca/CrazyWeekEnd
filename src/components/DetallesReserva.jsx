@@ -18,7 +18,7 @@ export function DetallesReserva() {
       .then((result) => {
         setReserva(result);
 
-        getAlojamiento(result.idAlojamiento)
+        getAlojamiento(result.alojamientoId)
           .then((result) => {
             setAlojamiento(result);
             setLoading(false);
@@ -32,15 +32,15 @@ export function DetallesReserva() {
       });
   }, [id]);
 
-  function handleDelete(e) {
+  async function handleDelete(e) {
     e.preventDefault();
-    deleteReserva(id)
+    await deleteReserva(id)
       .then(() => {
         alert("Reserva eliminada correctamente");
         navigate("/home");
       })
       .catch((e) => {
-        alert("Ha ocurrido un error eliminando el usuario");
+        alert("Ha ocurrido un error eliminando la reserva");
       });
   }
 

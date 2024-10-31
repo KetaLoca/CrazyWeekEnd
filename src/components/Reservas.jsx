@@ -14,10 +14,9 @@ export function Reservas() {
       .then((resultList) => {
         setReservas(resultList);
         setLoading(false);
-        console.log(resultList);
       })
       .catch((e) => {
-        console.log(e);
+        setLoading(false)
       });
   }, [userEmail]);
 
