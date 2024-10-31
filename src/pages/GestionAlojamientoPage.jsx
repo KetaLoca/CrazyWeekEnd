@@ -16,7 +16,7 @@ export function GestionAlojamientoPage() {
   useEffect(() => {
     getAlojamiento(id)
       .then((alojamiento) => {
-        if (alojamiento.emailUser == userEmail) {
+        if (alojamiento.userEmail == userEmail) {
           setAlojamiento(alojamiento);
         } else {
           alert("Debe estar logueado y ser el gerente del alojamiento");
@@ -28,11 +28,11 @@ export function GestionAlojamientoPage() {
       });
   }, [id]);
 
-  const handleEliminar = () => {
+  const handleEliminar = async () => {
     const folderRef = ref(storage, id); // 'id' es la ruta de la carpeta
 
     // Listar todos los archivos en la carpeta
-    listAll(folderRef)
+    await listAll(folderRef)
       .then((res) => {
         // Crear un array de promesas de eliminación
         const deletePromises = res.items.map((itemRef) =>
@@ -69,8 +69,8 @@ export function GestionAlojamientoPage() {
         <div style={{ maxWidth: "700px" }}>
           <h2>{alojamiento.nombre}</h2>
           <ImageCarousel images={alojamiento.imgURL} />
-          <aside>
-            Gerente: <strong>{alojamiento.emailUser}</strong>
+          <aside style={{marginTop: "20px"}}>
+            Gerente: <strong>{alojamiento.userEmail}</strong>
           </aside>
           <p>{alojamiento.descripcion}</p>
           <button className="eliminar-reserva-btn" onClick={handleEliminar}>
