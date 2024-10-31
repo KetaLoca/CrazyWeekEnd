@@ -8,9 +8,9 @@ export class User {
 }
 
 export class Alojamiento {
-  constructor(id, emailUser, nombre, descripcion, imgURL, animales, ubicacion) {
+  constructor(id, userEmail, nombre, descripcion, imgURL, animales, ubicacion) {
     this.id = id;
-    this.emailUser = emailUser;
+    this.userEmail = userEmail;
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.imgURL = imgURL;
@@ -20,9 +20,9 @@ export class Alojamiento {
 }
 
 export class Reserva {
-  constructor(id, emailUser, idAlojamiento, fechaInicio, fechaFin) {
+  constructor(id, userEmail, idAlojamiento, fechaInicio, fechaFin) {
     this.id = id;
-    this.emailUser = emailUser;
+    this.userEmail = userEmail;
     this.idAlojamiento = idAlojamiento;
     this.fechaInicio = fechaInicio;
     this.fechaFin = fechaFin;

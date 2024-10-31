@@ -72,17 +72,20 @@ export const CrearAlojamientoPage = () => {
         sort,
         location
       );
-      addAlojamiento(alojamiento)
+
+      await addAlojamiento(alojamiento)
         .then(() => {
           setUploading(false);
           alert("Alojamiento añadido correctamente");
           navigate("/home");
         })
         .catch((e) => {
+          setUploading(false)
           console.error(e);
-          setError("Error con firestore");
+          setError("Error con la API");
         });
     } catch (e) {
+      setUploading(false)
       console.error("Error añadiendo alojamiento", e);
       setError("Error añadiendo el alojamiento, vuelva a intentarlo");
     }
