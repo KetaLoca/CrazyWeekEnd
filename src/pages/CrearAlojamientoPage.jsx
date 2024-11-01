@@ -30,7 +30,7 @@ export const CrearAlojamientoPage = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (nombre == "" || descripción == "" || files.length == 0) {
+    if (nombre == "" || descripción == "" || files.length == 0 || location == null) {
       setError(
         "Debes rellenar todos los campos para poder crear el alojamiento"
       );
