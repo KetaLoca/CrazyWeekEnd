@@ -88,11 +88,11 @@ export const AuthPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <p>{error}</p>
-        <button ref={signUpButtonRef} onClick={handleSignUp}>
-          Registrarse
-        </button>
         <button type="submit" ref={signInButtonRef}>
           Iniciar sesión
+        </button>
+        <button ref={signUpButtonRef} onClick={handleSignUp}>
+          Registrarse
         </button>
       </form>
     </div>

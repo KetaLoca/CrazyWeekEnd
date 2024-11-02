@@ -11,7 +11,6 @@ export function AuthRegisterPage() {
     const [apellidos, setApellidos] = useState("")
     const [telefono, setTelefono] = useState("")
     const [loading, setLoading] = useState(false)
-    const { setUserEmail, setIsLogged } = useContext(AuthContext)
     const navigate = useNavigate()
 
 
@@ -64,8 +63,7 @@ export function AuthRegisterPage() {
                 <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 <input type="text" placeholder="Apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
                 <input type="text" placeholder="Teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
-                <button onClick={() => { navigate("/auth") }}>Inicio de sesión</button>
-                <button type="onSubmit" onClick={handleSubmit}>Registrarse</button>
+                <button type="onSubmit" onClick={handleSubmit}>Registrarse</button><button onClick={() => { navigate("/auth") }}>Inicio de sesión</button>
             </form>
         </div>
     )
