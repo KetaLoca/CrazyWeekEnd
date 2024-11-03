@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,9 +6,21 @@ import axios from "axios";
 axios.defaults.withCredentials = true
 
 export function HomePage() {
-  const { userEmail, isLogged, setIsLogged } = useContext(AuthContext);
+  const { userEmail, setUserEmail, isLogged, setIsLogged } = useContext(AuthContext);
   const logOutButtonRef = useRef(null)
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/users/auth")
+      .then((e) => {
+        setUserEmail(e.data)
+        setIsLogged(true)
+      })
+      .catch(() => {
+        setIsLogged(false)
+        return
+      })
+  }, [])
 
   function handleBuscarAlojamientos() {
     navigate("/alojamientos");
@@ -47,6 +59,11 @@ export function HomePage() {
         }
       })
       .catch((e) => {
+        if (e.status == 401) {
+          setIsLogged(false)
+          navigate("/auth")
+          return
+        }
         alert("Error cerrando sesión")
       })
   }
