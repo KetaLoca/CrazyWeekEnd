@@ -20,7 +20,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="*" element={<Page404 />} />
-        <Route path="/" element={<Navigate to="/auth" />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/authRegister" element={<AuthRegisterPage />} />
         <Route path="/home" element={<HomePage />} />
