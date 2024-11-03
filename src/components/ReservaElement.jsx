@@ -20,7 +20,6 @@ export const ReservaElement = ({ reserva }) => {
 
   return (
     <>
-      <h2>{alojamiento ? alojamiento.nombre : "Nombre no disponible"}</h2>
       {alojamiento ? (
         <ImageCarousel images={alojamiento.imgURL} />
       ) : (
@@ -31,6 +30,7 @@ export const ReservaElement = ({ reserva }) => {
           alt="Foto portada alojamiento"
         />
       )}
+      <h2 style={{ marginTop: "25px", marginBottom: "-10px" }}>{alojamiento ? alojamiento.nombre : "Nombre no disponible"}</h2>
       <p>
         <strong>
           {" "}

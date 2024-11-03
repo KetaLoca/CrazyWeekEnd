@@ -1,3 +1,5 @@
+import React from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFirestore } from "../hooks/useFirestore";
 import { format } from "date-fns";
@@ -50,13 +52,13 @@ export function ReservaPage() {
       {alojamiento && reserva ? (
         <div className="reservadetalles" style={{ maxWidth: "700px" }}>
           <h1>Gestión reserva</h1>
-          <h2>{alojamiento.nombre}</h2>
           <ImageCarousel images={alojamiento.imgURL} />
+          <h2 style={{ marginTop: "20px", marginBottom: "-10px" }}>{alojamiento.nombre}</h2>
+          <p style={{ marginBottom: "-10px" }}>{alojamiento.descripcion}</p>
           <strong>
             {format(reserva.fechaInicio, "dd-MM-yyyy")} ||{" "}
             {format(reserva.fechaFin, "dd-MM-yyyy")}
           </strong>
-          <p>{alojamiento.descripcion}</p>
           <button className="eliminar-reserva-btn" onClick={handleDelete}>
             Eliminar reserva
           </button>
