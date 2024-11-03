@@ -21,6 +21,7 @@ export function AuthRegisterPage() {
             alert("Debe rellenar todos los campos para poder registrarse")
             return
         }
+
         if (password != verifyPassword) {
             alert("Los dos campos de contraseña no coinciden")
             return
@@ -63,7 +64,8 @@ export function AuthRegisterPage() {
                 <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 <input type="text" placeholder="Apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
                 <input type="text" placeholder="Teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
-                <button type="onSubmit" onClick={handleSubmit}>Registrarse</button><button onClick={() => { navigate("/auth") }}>Inicio de sesión</button>
+                <button type="onSubmit" onClick={handleSubmit}>Registrarse</button>
+                <button onClick={() => { navigate("/auth") }}>Inicio de sesión</button>
             </form>
         </div>
     )
