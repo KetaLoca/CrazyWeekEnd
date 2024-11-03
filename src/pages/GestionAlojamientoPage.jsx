@@ -33,18 +33,18 @@ export function GestionAlojamientoPage() {
 
     // Listar todos los archivos en la carpeta
     await listAll(folderRef)
-      .then((res) => {
+      .then(async (res) => {
         // Crear un array de promesas de eliminación
-        const deletePromises = res.items.map((itemRef) =>
-          deleteObject(itemRef)
+        const deletePromises = res.items.map(async (itemRef) =>
+          await deleteObject(itemRef)
         );
 
         // Ejecutar todas las promesas
-        return Promise.all(deletePromises);
+        await Promise.all(deletePromises);
       })
-      .then(() => {
+      .then(async () => {
         // Eliminar el alojamiento de la base de datos
-        deleteAlojamiento(id)
+        await deleteAlojamiento(id)
           .then(() => {
             alert("Alojamiento eliminado correctamente");
             navigate("/home");
@@ -67,11 +67,11 @@ export function GestionAlojamientoPage() {
       <h1>Gestión de alojamiento</h1>
       {alojamiento ? (
         <div style={{ maxWidth: "700px" }}>
-          <h2>{alojamiento.nombre}</h2>
-          <ImageCarousel images={alojamiento.imgURL} />
-          <aside style={{marginTop: "20px"}}>
+          <aside style={{ marginBottom: "20px" }}>
             Gerente: <strong>{alojamiento.userEmail}</strong>
           </aside>
+          <ImageCarousel images={alojamiento.imgURL} />
+          <h2>{alojamiento.nombre}</h2>
           <p>{alojamiento.descripcion}</p>
           <button className="eliminar-reserva-btn" onClick={handleEliminar}>
             Eliminar alojamiento
