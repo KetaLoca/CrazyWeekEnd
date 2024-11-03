@@ -16,7 +16,7 @@ export function HomePage() {
         setUserEmail(e.data)
         setIsLogged(true)
       })
-      .catch(() => {
+      .catch((e) => {
         setIsLogged(false)
         return
       })
@@ -59,12 +59,9 @@ export function HomePage() {
         }
       })
       .catch((e) => {
-        if (e.status == 401) {
-          setIsLogged(false)
-          navigate("/auth")
-          return
-        }
-        alert("Error cerrando sesión")
+        setIsLogged(false)
+        navigate("/auth")
+        return
       })
   }
 
