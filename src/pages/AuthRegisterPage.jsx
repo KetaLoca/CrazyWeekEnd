@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { BACKEND } from "../config";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 
 export function AuthRegisterPage() {
@@ -27,7 +27,7 @@ export function AuthRegisterPage() {
             return
         }
 
-        await axios.post('http://localhost:3000/users/register',
+        await axios.post(`${BACKEND}/users/register`,
             {
                 email: email,
                 password: password,

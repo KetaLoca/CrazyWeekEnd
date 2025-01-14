@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
+import { BACKEND } from "../config";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +35,7 @@ export const AuthPage = () => {
       return
     }
 
-    await axios.post('http://localhost:3000/users/login',
+    await axios.post(`${BACKEND}/users/login`,
       {
         email: email,
         password: password

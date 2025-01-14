@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BACKEND } from "../config";
 
 axios.defaults.withCredentials = true
 
@@ -11,7 +12,7 @@ export function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:3000/users/auth")
+    axios.get(`${BACKEND}/users/auth`)
       .then((e) => {
         setUserEmail(e.data)
         setIsLogged(true)
@@ -51,7 +52,7 @@ export function HomePage() {
       return
     }
 
-    await axios.post('http://localhost:3000/users/logout', null)
+    await axios.post(`${BACKEND}/users/logout`, null)
       .then((response) => {
         if (response.status == 200) {
           setIsLogged(false)
