@@ -1,1 +1,4 @@
-export const BACKEND = "http://localhost:3000"
+
+const dominio = "localhost"
+
+export const BACKEND = `http://${dominio}:3000`
