@@ -1,4 +1,4 @@
 
-const dominio = "backend-service"
+const dominio = "backend.jesuspb.dev"
 
-export const BACKEND = `https://${dominio}:3000`
+export const BACKEND = `https://${dominio}`
