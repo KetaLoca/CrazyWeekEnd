@@ -1,4 +1,4 @@
 
 const dominio = "backend-service"
 
-export const BACKEND = `http://${dominio}:3000`
+export const BACKEND = `https://${dominio}:3000`
